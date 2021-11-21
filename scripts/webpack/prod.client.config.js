@@ -22,6 +22,15 @@ const publicPath = getWebpackPublicPath()
 // babel-plugin-relay requires a prod BABEL_ENV to remove hash checking logic. Probably a bug in the package.
 process.env.BABEL_ENV = 'production'
 
+// default static image location
+staticImageLocation = `https://${process.env.AWS_S3_BUCKET}/static`
+
+//check if file storage is local, so that we can change the location of static images
+const fileStoreProvider = process.env.FILE_STORE_PROVIDER
+if (fileStoreProvider === "local") {
+  staticImageLocation = `/static/images`
+}
+
 const babelPresets = [
   [
     '@babel/preset-env',
@@ -130,7 +139,7 @@ module.exports = ({isDeploy, isStats}) => ({
       'process.env.PROTOO_LISTEN_PORT': JSON.stringify(
         (process.env.PROTOO_LISTEN_PORT || 4444) - 1
       ),
-      __STATIC_IMAGES__: JSON.stringify(`https://${process.env.AWS_S3_BUCKET}/static`)
+      __STATIC_IMAGES__: JSON.stringify(staticImageLocation)
     }),
     new webpack.SourceMapDevToolPlugin({
       filename: '[name]_[contenthash].js.map',
