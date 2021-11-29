@@ -29,11 +29,13 @@
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
   "editor.tabSize": 2,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "editor.formatOnSave": true,
   "editor.gotoLocation.multipleDefinitions": "goto",
   "editor.gotoLocation.multipleTypeDefinitions": "goto",
   "editor.wordWrapColumn": 100,
   "editor.wordWrap": "on",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true
