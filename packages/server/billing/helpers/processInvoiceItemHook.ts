@@ -54,13 +54,13 @@ const processInvoiceItemHook = async (stripeSubscriptionId: string) => {
   // we have lock, that means we're free to send 1 item to stripe
   const r = await getRethink()
 
-  const hook = ((await r
+  const hook = (await r
     .table('InvoiceItemHook')
     .getAll(stripeSubscriptionId, {index: 'stripeSubscriptionId'})
     .filter({isPending: true})
     .orderBy('createdAt')
     .nth(0)
-    .run()) as unknown) as InvoiceItemHook
+    .run()) as unknown as InvoiceItemHook
 
   if (!hook) {
     sendToSentry(new Error('Stripe Hook Not Found'), {

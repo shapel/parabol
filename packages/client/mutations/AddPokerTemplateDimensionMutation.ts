@@ -34,14 +34,12 @@ const mutation = graphql`
   }
 `
 
-export const addPokerTemplateDimensionTeamUpdater: SharedUpdater<AddPokerTemplateDimensionMutation_dimension> = (
-  payload,
-  {store}
-) => {
-  const dimension = payload.getLinkedRecord('dimension')
-  if (!dimension) return
-  handleAddPokerTemplateDimension(dimension, store)
-}
+export const addPokerTemplateDimensionTeamUpdater: SharedUpdater<AddPokerTemplateDimensionMutation_dimension> =
+  (payload, {store}) => {
+    const dimension = payload.getLinkedRecord('dimension')
+    if (!dimension) return
+    handleAddPokerTemplateDimension(dimension, store)
+  }
 
 const AddPokerTemplateDimensionMutation: StandardMutation<
   TAddPokerTemplateDimensionMutation,
@@ -69,7 +67,7 @@ const AddPokerTemplateDimensionMutation: StandardMutation<
         description: '',
         scaleId: SprintPokerDefaults.DEFAULT_SCALE_ID,
         sortOrder,
-        templateId,
+        templateId
       })
       proxyTemplateDimension.setLinkedRecord(defaultScale, 'selectedScale')
       proxyTemplateDimension.setLinkedRecord(template, 'template')

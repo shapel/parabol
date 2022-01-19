@@ -71,19 +71,12 @@ export default {
     if (organizationUser.role === role) return null
     const {id: organizationUserId} = organizationUser
     // RESOLUTION
-    await r
-      .table('OrganizationUser')
-      .get(organizationUserId)
-      .update({role})
-      .run()
+    await r.table('OrganizationUser').get(organizationUserId).update({role}).run()
 
     if (role === 'BILLING_LEADER') {
       const promotionNotification = new NotificationPromoteToBillingLeader({orgId, userId})
       const {id: promotionNotificationId} = promotionNotification
-      await r
-        .table('Notification')
-        .insert(promotionNotification)
-        .run()
+      await r.table('Notification').insert(promotionNotification).run()
       const notificationIdsAdded = [promotionNotificationId]
       // add the org to the list of owned orgs
       const data = {orgId, userId, organizationUserId, notificationIdsAdded}

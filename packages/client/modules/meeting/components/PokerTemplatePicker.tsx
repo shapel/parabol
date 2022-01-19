@@ -11,11 +11,12 @@ interface Props {
   settings: PokerTemplatePicker_settings
 }
 
-const PokerTemplateModal = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'PokerTemplateModal' */
-    './PokerTemplateModal'
-  )
+const PokerTemplateModal = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'PokerTemplateModal' */
+      './PokerTemplateModal'
+    )
 )
 
 const Dropdown = styled(NewMeetingDropdown)({
@@ -38,7 +39,9 @@ const PokerTemplatePicker = (props: Props) => {
         onClick={togglePortal}
         onMouseEnter={PokerTemplateModal.preload}
       />
-      {modalPortal(<PokerTemplateModal closePortal={closePortal} pokerMeetingSettings={settings} />)}
+      {modalPortal(
+        <PokerTemplateModal closePortal={closePortal} pokerMeetingSettings={settings} />
+      )}
     </>
   )
 }

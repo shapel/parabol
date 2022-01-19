@@ -26,8 +26,8 @@ const RootEditor = styled('div')({
   width: '100%'
 })
 
-const AndroidEditorFallback = lazyPreload(() =>
-  import(/* webpackChunkName: 'AndroidEditorFallback' */ '../AndroidEditorFallback')
+const AndroidEditorFallback = lazyPreload(
+  () => import(/* webpackChunkName: 'AndroidEditorFallback' */ '../AndroidEditorFallback')
 )
 
 const TaskEditorFallback = styled(AndroidEditorFallback)({

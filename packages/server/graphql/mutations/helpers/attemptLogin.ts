@@ -13,10 +13,7 @@ const logFailedLogin = async (ip: string, email: string) => {
   const r = await getRethink()
   if (ip) {
     const failedAuthRequest = new FailedAuthRequest({ip, email})
-    await r
-      .table('FailedAuthRequest')
-      .insert(failedAuthRequest)
-      .run()
+    await r.table('FailedAuthRequest').insert(failedAuthRequest).run()
   }
 }
 
@@ -27,18 +24,18 @@ const attemptLogin = async (denormEmail: string, password: string, ip = '') => {
 
   const existingUser = await getUserByEmail(email)
   const {failOnAccount, failOnTime} = await r({
-    failOnAccount: (r
+    failOnAccount: r
       .table('FailedAuthRequest')
       .getAll(ip, {index: 'ip'})
       .filter({email})
       .count()
-      .ge(Threshold.MAX_ACCOUNT_PASSWORD_ATTEMPTS) as unknown) as boolean,
-    failOnTime: (r
+      .ge(Threshold.MAX_ACCOUNT_PASSWORD_ATTEMPTS) as unknown as boolean,
+    failOnTime: r
       .table('FailedAuthRequest')
       .getAll(ip, {index: 'ip'})
       .filter((row) => row('time').ge(yesterday))
       .count()
-      .ge(Threshold.MAX_DAILY_PASSWORD_ATTEMPTS) as unknown) as boolean
+      .ge(Threshold.MAX_DAILY_PASSWORD_ATTEMPTS) as unknown as boolean
   }).run()
   if (failOnAccount || failOnTime) {
     await sleep(1000)

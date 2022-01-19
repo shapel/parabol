@@ -139,9 +139,7 @@ const handleAddTaskNotifications = async (
 
   if (notificationsToAdd.length) {
     // don't await to speed up task creation
-    r.table('Notification')
-      .insert(notificationsToAdd)
-      .run()
+    r.table('Notification').insert(notificationsToAdd).run()
     notificationsToAdd.forEach((notification) => {
       publish(
         SubscriptionChannel.NOTIFICATION,
@@ -261,13 +259,13 @@ export default {
     const {teamMembers} = await r({
       task: r.table('Task').insert(task),
       history: r.table('TaskHistory').insert(history),
-      teamMembers: (r
+      teamMembers: r
         .table('TeamMember')
         .getAll(teamId, {index: 'teamId'})
         .filter({
           isNotRemoved: true
         })
-        .coerceTo('array') as unknown) as TeamMember[]
+        .coerceTo('array') as unknown as TeamMember[]
     }).run()
 
     handleAddTaskNotifications(teamMembers, task, viewerId, teamId, {

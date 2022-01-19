@@ -23,8 +23,8 @@ const StyledIcon = styled(Icon)({
   marginRight: 4
 })
 
-const UndoableGroupPhaseDialog = lazyPreload(() =>
-  import(/* webpackChunkName: 'UndoableGroupPhaseDialog' */ './UndoableGroupPhaseDialog')
+const UndoableGroupPhaseDialog = lazyPreload(
+  () => import(/* webpackChunkName: 'UndoableGroupPhaseDialog' */ './UndoableGroupPhaseDialog')
 )
 
 const UndoableGroupPhaseControl = (props: Props) => {
@@ -37,7 +37,10 @@ const UndoableGroupPhaseControl = (props: Props) => {
   })
   return (
     <>
-      <StyledButton onClick={toggleModal} palette={'blue'}><StyledIcon>edit</StyledIcon>{' Edit Groups'}</StyledButton>
+      <StyledButton onClick={toggleModal} palette={'blue'}>
+        <StyledIcon>edit</StyledIcon>
+        {' Edit Groups'}
+      </StyledButton>
       {modalPortal(<UndoableGroupPhaseDialog closePortal={closeModal} meetingId={meetingId} />)}
     </>
   )

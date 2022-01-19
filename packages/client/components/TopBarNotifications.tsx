@@ -7,11 +7,12 @@ import lazyPreload from '~/utils/lazyPreload'
 import {TopBarNotifications_viewer} from '~/__generated__/TopBarNotifications_viewer.graphql'
 import TopBarIcon from './TopBarIcon'
 
-const NotificationDropdown = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'NotificationDropdown' */
-    './NotificationDropdown'
-  )
+const NotificationDropdown = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'NotificationDropdown' */
+      './NotificationDropdown'
+    )
 )
 
 interface Props {

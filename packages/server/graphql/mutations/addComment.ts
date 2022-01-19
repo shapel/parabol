@@ -67,10 +67,7 @@ const addComment = {
 
     const dbComment = new Comment({...comment, content, createdBy: viewerId})
     const {id: commentId, isAnonymous, threadParentId} = dbComment
-    await r
-      .table('Comment')
-      .insert(dbComment)
-      .run()
+    await r.table('Comment').insert(dbComment).run()
 
     const data = {commentId, meetingId}
     const {phases, teamId} = meeting!

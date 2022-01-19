@@ -50,30 +50,28 @@ type RetroReflectionGroup = NonNullable<
   NonNullable<VoteForReflectionGroupMutationResponse['voteForReflectionGroup']>['reflectionGroup']
 >
 
-const VoteForReflectionGroupMutation: StandardMutation<
-  TVoteForReflectionGroupMutation,
-  Handlers
-> = (atmosphere, variables, {onError, onCompleted, meetingId}) => {
-  return commitMutation<TVoteForReflectionGroupMutation>(atmosphere, {
-    mutation,
-    variables,
-    onCompleted,
-    onError,
-    optimisticUpdater: (store) => {
-      const {viewerId} = atmosphere
-      const {reflectionGroupId, isUnvote} = variables
-      const reflectionGroupProxy = store.get<RetroReflectionGroup>(reflectionGroupId)
-      if (!reflectionGroupProxy) return
-      const increment = isUnvote ? -1 : 1
-      const meetingMemberId = toTeamMemberId(meetingId, viewerId)
-      const meetingMemberProxy = store.get<RetrospectiveMeetingMember>(meetingMemberId)
-      if (!meetingMemberProxy) return
-      const viewerVoteCount = reflectionGroupProxy.getValue('viewerVoteCount') || 0
-      const votesRemaining = meetingMemberProxy.getValue('votesRemaining') || 0
-      reflectionGroupProxy.setValue(viewerVoteCount + increment, 'viewerVoteCount')
-      meetingMemberProxy.setValue(votesRemaining - increment, 'votesRemaining')
-    }
-  })
-}
+const VoteForReflectionGroupMutation: StandardMutation<TVoteForReflectionGroupMutation, Handlers> =
+  (atmosphere, variables, {onError, onCompleted, meetingId}) => {
+    return commitMutation<TVoteForReflectionGroupMutation>(atmosphere, {
+      mutation,
+      variables,
+      onCompleted,
+      onError,
+      optimisticUpdater: (store) => {
+        const {viewerId} = atmosphere
+        const {reflectionGroupId, isUnvote} = variables
+        const reflectionGroupProxy = store.get<RetroReflectionGroup>(reflectionGroupId)
+        if (!reflectionGroupProxy) return
+        const increment = isUnvote ? -1 : 1
+        const meetingMemberId = toTeamMemberId(meetingId, viewerId)
+        const meetingMemberProxy = store.get<RetrospectiveMeetingMember>(meetingMemberId)
+        if (!meetingMemberProxy) return
+        const viewerVoteCount = reflectionGroupProxy.getValue('viewerVoteCount') || 0
+        const votesRemaining = meetingMemberProxy.getValue('votesRemaining') || 0
+        reflectionGroupProxy.setValue(viewerVoteCount + increment, 'viewerVoteCount')
+        meetingMemberProxy.setValue(votesRemaining - increment, 'votesRemaining')
+      }
+    })
+  }
 
 export default VoteForReflectionGroupMutation

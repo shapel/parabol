@@ -25,10 +25,7 @@ const handleMassInviteToken = async (
     expiresAt,
     email
   })
-  await r
-    .table('TeamInvitation')
-    .insert(invitation)
-    .run()
+  await r.table('TeamInvitation').insert(invitation).run()
   return {invitation}
 }
 

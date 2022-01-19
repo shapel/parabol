@@ -20,11 +20,7 @@ const ActionMeetingMember = new GraphQLObjectType<any, GQLContext>({
           .table('Task')
           .getAll(userId, {index: 'userId'})
           .filter({doneMeetingId: meetingId})
-          .filter((task) =>
-            task('tags')
-              .contains('private')
-              .not()
-          )
+          .filter((task) => task('tags').contains('private').not())
           .run()
       }
     },

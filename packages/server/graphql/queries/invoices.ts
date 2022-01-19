@@ -51,11 +51,7 @@ export default {
           leftBound: 'open',
           rightBound: 'closed'
         })
-        .filter((invoice) =>
-          invoice('status')
-            .ne('UPCOMING')
-            .and(invoice('total').ne(0))
-        )
+        .filter((invoice) => invoice('status').ne('UPCOMING').and(invoice('total').ne(0)))
         // it's possible that stripe gives the same startAt to 2 invoices (the first $5 charge & the next)
         // break ties based on when created. In the future, we might want to consider using the created_at provided by stripe instead of our own
         .orderBy(r.desc('startAt'), r.desc('createdAt'))

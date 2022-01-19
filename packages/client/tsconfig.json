@@ -5,28 +5,13 @@
     //TODO remove once added to tsconfig.base.json
     "noUncheckedIndexedAccess": true,
     "paths": {
-      "~/*": [
-        "*"
-      ],
-      "static/*": [
-        "../../static/*"
-      ]
+      "~/*": ["*"],
+      "static/*": ["../../static/*"]
     },
     "outDir": "lib",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
-    "types": [
-      "node"
-    ],
+    "lib": ["esnext", "dom"],
+    "types": ["node"]
   },
-  "files": [
-    "client.tsx"
-  ],
-  "exclude": [
-    "serviceWorker",
-    "**/node_modules",
-    "types/graphql.ts"
-  ]
+  "files": ["client.tsx"],
+  "exclude": ["serviceWorker", "**/node_modules", "types/graphql.ts"]
 }

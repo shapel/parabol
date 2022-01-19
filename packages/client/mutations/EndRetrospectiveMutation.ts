@@ -91,13 +91,11 @@ export const endRetrospectiveTeamOnNext: OnNextHandler<
   }
 }
 
-export const endRetrospectiveNotificationUpdater: SharedUpdater<EndRetrospectiveMutation_notification> = (
-  payload,
-  {store}
-) => {
-  const removedSuggestedActionId = payload.getValue('removedSuggestedActionId')
-  handleRemoveSuggestedActions(removedSuggestedActionId, store)
-}
+export const endRetrospectiveNotificationUpdater: SharedUpdater<EndRetrospectiveMutation_notification> =
+  (payload, {store}) => {
+    const removedSuggestedActionId = payload.getValue('removedSuggestedActionId')
+    handleRemoveSuggestedActions(removedSuggestedActionId, store)
+  }
 
 export const endRetrospectiveTeamUpdater: SharedUpdater<EndRetrospectiveMutation_team> = (
   payload,

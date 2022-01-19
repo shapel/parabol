@@ -22,24 +22,21 @@ const mutation = graphql`
   }
 `
 
-const UpdatePokerTemplateDimensionScaleMutation: StandardMutation<TUpdatePokerTemplateDimensionScaleMutation> = (
-  atmosphere,
-  variables,
-  {onError, onCompleted}
-) => {
-  return commitMutation<TUpdatePokerTemplateDimensionScaleMutation>(atmosphere, {
-    mutation,
-    variables,
-    optimisticUpdater: (store) => {
-      const {dimensionId, scaleId} = variables
-      const dimension = store.get(dimensionId)
-      const scale = store.get(scaleId)
-      if (!dimension || !scale) return
-      dimension.setLinkedRecord(scale, 'selectedScale')
-    },
-    onCompleted,
-    onError
-  })
-}
+const UpdatePokerTemplateDimensionScaleMutation: StandardMutation<TUpdatePokerTemplateDimensionScaleMutation> =
+  (atmosphere, variables, {onError, onCompleted}) => {
+    return commitMutation<TUpdatePokerTemplateDimensionScaleMutation>(atmosphere, {
+      mutation,
+      variables,
+      optimisticUpdater: (store) => {
+        const {dimensionId, scaleId} = variables
+        const dimension = store.get(dimensionId)
+        const scale = store.get(scaleId)
+        if (!dimension || !scale) return
+        dimension.setLinkedRecord(scale, 'selectedScale')
+      },
+      onCompleted,
+      onError
+    })
+  }
 
 export default UpdatePokerTemplateDimensionScaleMutation

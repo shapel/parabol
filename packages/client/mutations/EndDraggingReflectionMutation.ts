@@ -105,25 +105,23 @@ export const moveReflectionLocation = (
   handleAddReflectionGroupToGroups(store, reflectionGroup)
 }
 
-export const endDraggingReflectionMeetingUpdater: SharedUpdater<EndDraggingReflectionMutation_meeting> = (
-  payload,
-  {store}
-) => {
-  const reflection = payload.getLinkedRecord('reflection')
-  if (!reflection) return
-  const reflectionGroup = payload.getLinkedRecord('reflectionGroup')
-  const oldReflectionGroupId = getInProxy(payload, 'oldReflectionGroup', 'id')
-  const existingDrag = reflection.getLinkedRecord('remoteDrag')
-  if (!existingDrag) {
-    const remoteDrag = payload.getLinkedRecord('remoteDrag')
-    const remoteDragId = remoteDrag.getValue('id')
-    const existingDragStarts = (reflection.getValue('ignoreDragStarts') as string[]) || []
-    const nextDragStarts = existingDragStarts.concat(remoteDragId)
-    reflection.setValue(nextDragStarts, 'ignoreDragStarts')
-    reflection.setLinkedRecord(remoteDrag, 'remoteDrag')
+export const endDraggingReflectionMeetingUpdater: SharedUpdater<EndDraggingReflectionMutation_meeting> =
+  (payload, {store}) => {
+    const reflection = payload.getLinkedRecord('reflection')
+    if (!reflection) return
+    const reflectionGroup = payload.getLinkedRecord('reflectionGroup')
+    const oldReflectionGroupId = getInProxy(payload, 'oldReflectionGroup', 'id')
+    const existingDrag = reflection.getLinkedRecord('remoteDrag')
+    if (!existingDrag) {
+      const remoteDrag = payload.getLinkedRecord('remoteDrag')
+      const remoteDragId = remoteDrag.getValue('id')
+      const existingDragStarts = (reflection.getValue('ignoreDragStarts') as string[]) || []
+      const nextDragStarts = existingDragStarts.concat(remoteDragId)
+      reflection.setValue(nextDragStarts, 'ignoreDragStarts')
+      reflection.setLinkedRecord(remoteDrag, 'remoteDrag')
+    }
+    moveReflectionLocation(reflection, reflectionGroup, oldReflectionGroupId, store)
   }
-  moveReflectionLocation(reflection, reflectionGroup, oldReflectionGroupId, store)
-}
 
 export const endDraggingReflectionMeetingOnNext = (payload, context) => {
   const {atmosphere} = context

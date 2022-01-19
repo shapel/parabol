@@ -69,8 +69,8 @@ const EditorStyles = styled('div')(({useFallback, userSelect, isClipped}: any) =
   width: '100%'
 })) as any
 
-const AndroidEditorFallback = lazyPreload(() =>
-  import(/* webpackChunkName: 'AndroidEditorFallback' */ './AndroidEditorFallback')
+const AndroidEditorFallback = lazyPreload(
+  () => import(/* webpackChunkName: 'AndroidEditorFallback' */ './AndroidEditorFallback')
 )
 
 class ReflectionEditorWrapper extends PureComponent<Props> {

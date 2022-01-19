@@ -14,7 +14,7 @@ const handleRemovePokerTemplateScale = (
   const dimensionsUsingScale = scale.getLinkedRecords('dimensions')
   const defaultScale = store.get(SprintPokerDefaults.DEFAULT_SCALE_ID)!
   dimensionsUsingScale?.forEach((dimension) => {
-    dimension.setLinkedRecord(defaultScale, "selectedScale")
+    dimension.setLinkedRecord(defaultScale, 'selectedScale')
   })
 }
 

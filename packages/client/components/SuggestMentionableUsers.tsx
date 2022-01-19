@@ -38,15 +38,8 @@ interface Props {
 }
 
 const SuggestMentionableUsers = (props: Props) => {
-  const {
-    active,
-    handleSelect,
-    originCoords,
-    suggestions,
-    setSuggestions,
-    triggerWord,
-    viewer
-  } = props
+  const {active, handleSelect, originCoords, suggestions, setSuggestions, triggerWord, viewer} =
+    props
   const {team} = viewer
   const teamMembers = team ? team.teamMembers : null
   useEffect(() => {

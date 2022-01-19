@@ -26,8 +26,8 @@ const AvatarWrapper = styled('button')({
   }
 })
 
-const StandardHubUserMenu = lazyPreload(() =>
-  import(/* webpackChunkName: 'StandardHubUserMenu' */ './StandardHubUserMenu')
+const StandardHubUserMenu = lazyPreload(
+  () => import(/* webpackChunkName: 'StandardHubUserMenu' */ './StandardHubUserMenu')
 )
 
 interface Props {

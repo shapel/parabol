@@ -20,59 +20,64 @@ const TallMenu = styled(Menu)({
   maxHeight: 320
 })
 
-const CheckInHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'CheckInHelpMenu' */ './MeetingHelp/CheckInHelpMenu')
+const CheckInHelpMenu = lazyPreload(
+  async () => import(/* webpackChunkName: 'CheckInHelpMenu' */ './MeetingHelp/CheckInHelpMenu')
 )
 
-const ReflectHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'ReflectHelpMenu' */ './MeetingHelp/ReflectHelpMenu')
+const ReflectHelpMenu = lazyPreload(
+  async () => import(/* webpackChunkName: 'ReflectHelpMenu' */ './MeetingHelp/ReflectHelpMenu')
 )
-const DemoReflectHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'DemoReflectHelpMenu' */ './MeetingHelp/DemoReflectHelpMenu')
+const DemoReflectHelpMenu = lazyPreload(
+  async () =>
+    import(/* webpackChunkName: 'DemoReflectHelpMenu' */ './MeetingHelp/DemoReflectHelpMenu')
 )
-const GroupHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'GroupHelpMenu' */ './MeetingHelp/GroupHelpMenu')
+const GroupHelpMenu = lazyPreload(
+  async () => import(/* webpackChunkName: 'GroupHelpMenu' */ './MeetingHelp/GroupHelpMenu')
 )
-const DemoGroupHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'DemoGroupHelpMenu' */ './MeetingHelp/DemoGroupHelpMenu')
+const DemoGroupHelpMenu = lazyPreload(
+  async () => import(/* webpackChunkName: 'DemoGroupHelpMenu' */ './MeetingHelp/DemoGroupHelpMenu')
 )
-const VoteHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'VoteHelpMenu' */ './MeetingHelp/VoteHelpMenu')
+const VoteHelpMenu = lazyPreload(
+  async () => import(/* webpackChunkName: 'VoteHelpMenu' */ './MeetingHelp/VoteHelpMenu')
 )
-const DemoVoteHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'DemoVoteHelpMenu' */ './MeetingHelp/DemoVoteHelpMenu')
+const DemoVoteHelpMenu = lazyPreload(
+  async () => import(/* webpackChunkName: 'DemoVoteHelpMenu' */ './MeetingHelp/DemoVoteHelpMenu')
 )
-const DiscussHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'DiscussHelpMenu' */ './MeetingHelp/DiscussHelpMenu')
+const DiscussHelpMenu = lazyPreload(
+  async () => import(/* webpackChunkName: 'DiscussHelpMenu' */ './MeetingHelp/DiscussHelpMenu')
 )
-const DemoDiscussHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'DemoDiscussHelpMenu' */ './MeetingHelp/DemoDiscussHelpMenu')
+const DemoDiscussHelpMenu = lazyPreload(
+  async () =>
+    import(/* webpackChunkName: 'DemoDiscussHelpMenu' */ './MeetingHelp/DemoDiscussHelpMenu')
 )
-const ActionMeetingAgendaItemsHelpMenu = lazyPreload(async () =>
-  import(
-    /* webpackChunkName: 'ActionMeetingAgendaItemsHelpMenu' */ './MeetingHelp/ActionMeetingAgendaItemsHelpMenu'
-  )
+const ActionMeetingAgendaItemsHelpMenu = lazyPreload(
+  async () =>
+    import(
+      /* webpackChunkName: 'ActionMeetingAgendaItemsHelpMenu' */ './MeetingHelp/ActionMeetingAgendaItemsHelpMenu'
+    )
 )
-const ActionMeetingFirstCallHelpMenu = lazyPreload(async () =>
-  import(
-    /* webpackChunkName: 'ActionMeetingFirstCallHelpMenu' */ './MeetingHelp/ActionMeetingFirstCallHelpMenu'
-  )
+const ActionMeetingFirstCallHelpMenu = lazyPreload(
+  async () =>
+    import(
+      /* webpackChunkName: 'ActionMeetingFirstCallHelpMenu' */ './MeetingHelp/ActionMeetingFirstCallHelpMenu'
+    )
 )
-const ActionMeetingLastCallHelpMenu = lazyPreload(async () =>
-  import(
-    /* webpackChunkName: 'ActionMeetingLastCallHelpMenu' */ './MeetingHelp/ActionMeetingLastCallHelpMenu'
-  )
+const ActionMeetingLastCallHelpMenu = lazyPreload(
+  async () =>
+    import(
+      /* webpackChunkName: 'ActionMeetingLastCallHelpMenu' */ './MeetingHelp/ActionMeetingLastCallHelpMenu'
+    )
 )
-const UpdatesHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'UpdatesHelpMenu' */ './MeetingHelp/UpdatesHelpMenu')
+const UpdatesHelpMenu = lazyPreload(
+  async () => import(/* webpackChunkName: 'UpdatesHelpMenu' */ './MeetingHelp/UpdatesHelpMenu')
 )
 
-const ScopeHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'ScopeHelpMenu' */ './MeetingHelp/ScopeHelpMenu')
+const ScopeHelpMenu = lazyPreload(
+  async () => import(/* webpackChunkName: 'ScopeHelpMenu' */ './MeetingHelp/ScopeHelpMenu')
 )
 
-const EstimateHelpMenu = lazyPreload(async () =>
-  import(/* webpackChunkName: 'EstimateHelpMenu' */ './MeetingHelp/EstimateHelpMenu')
+const EstimateHelpMenu = lazyPreload(
+  async () => import(/* webpackChunkName: 'EstimateHelpMenu' */ './MeetingHelp/EstimateHelpMenu')
 )
 
 const demoHelps = {
@@ -116,7 +121,7 @@ const BottomControlBarTips = (props: Props) => {
   const MenuContent = menus[phaseType]
   useEffect(() => {
     if (demoPauseOpen && isDemoRoute()) {
-      const {clientGraphQLServer} = (atmosphere as unknown) as LocalAtmosphere
+      const {clientGraphQLServer} = atmosphere as unknown as LocalAtmosphere
       const {isNew} = clientGraphQLServer
       if (!isNew) {
         openPortal()

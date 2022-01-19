@@ -27,7 +27,7 @@ const ButtonBlock = styled('div')({
   position: 'absolute',
   right: 16,
   bottom: 16,
-  width: '100%',
+  width: '100%'
 })
 
 const Button = styled(FloatingActionButton)({

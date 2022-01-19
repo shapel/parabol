@@ -36,7 +36,15 @@ const JiraFieldMenuRoot = (props: Props) => {
       fetchPolicy={'store-or-network' as any}
       render={({props, error}) => {
         const viewer = (props as any)?.viewer ?? null
-        return <JiraFieldMenu viewer={viewer} error={error} menuProps={menuProps} stage={stage} submitScore={submitScore} />
+        return (
+          <JiraFieldMenu
+            viewer={viewer}
+            error={error}
+            menuProps={menuProps}
+            stage={stage}
+            submitScore={submitScore}
+          />
+        )
       }}
     />
   )

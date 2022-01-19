@@ -30,9 +30,7 @@ const ScopePhase = (props: Props) => {
           toggleSidebar={toggleSidebar}
         >
           <PhaseHeaderTitle>{phaseLabelLookup.SCOPE}</PhaseHeaderTitle>
-          <PhaseHeaderDescription>
-            {'Add tasks to be estimated'}
-          </PhaseHeaderDescription>
+          <PhaseHeaderDescription>{'Add tasks to be estimated'}</PhaseHeaderDescription>
         </MeetingTopBar>
         <PhaseWrapper>
           <StageTimerDisplay meeting={meeting} />

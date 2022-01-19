@@ -27,13 +27,11 @@ const mutation = graphql`
   }
 `
 
-export const dragDiscussionTopicMeetingUpdater: SharedUpdater<DragDiscussionTopicMutation_meeting> = (
-  payload,
-  {store}
-) => {
-  const meetingId = getInProxy(payload, 'meeting', 'id')
-  handleUpdateStageSort(store, meetingId, DISCUSS)
-}
+export const dragDiscussionTopicMeetingUpdater: SharedUpdater<DragDiscussionTopicMutation_meeting> =
+  (payload, {store}) => {
+    const meetingId = getInProxy(payload, 'meeting', 'id')
+    handleUpdateStageSort(store, meetingId, DISCUSS)
+  }
 
 const DragDiscussionTopicMutation: SimpleMutation<IDragDiscussionTopicMutation> = (
   atmosphere,

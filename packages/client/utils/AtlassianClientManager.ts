@@ -14,9 +14,7 @@ class AtlassianClientManager extends AtlassianManager {
     scopes: JiraPermissionScope[] = AtlassianManager.SCOPE
   ) {
     const {submitting, onError, onCompleted, submitMutation} = mutationProps
-    const providerState = Math.random()
-      .toString(36)
-      .substring(5)
+    const providerState = Math.random().toString(36).substring(5)
     const redirect = makeHref('/auth/atlassian')
     const uri = `https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=${
       window.__ACTION__.atlassian

@@ -19,11 +19,12 @@ interface Props {
   teamId: string
 }
 
-const SlackChannelDropdown = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'SlackChannelDropdown' */
-    '../../../../components/SlackChannelDropdown'
-  )
+const SlackChannelDropdown = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'SlackChannelDropdown' */
+      '../../../../components/SlackChannelDropdown'
+    )
 )
 
 enum ChannelState {

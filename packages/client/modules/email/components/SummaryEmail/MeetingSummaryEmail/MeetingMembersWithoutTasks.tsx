@@ -38,7 +38,7 @@ const MeetingMembersWithoutTasks = (props: Props) => {
   const membersWithoutTasks = meetingMembers.filter(
     (member) =>
       ((member.tasks && member.tasks.length) || 0) +
-      ((member.doneTasks && member.doneTasks.length) || 0) ===
+        ((member.doneTasks && member.doneTasks.length) || 0) ===
       0
   )
   membersWithoutTasks.sort((a, b) =>

@@ -56,8 +56,17 @@ const SummarySheet = (props: Props) => {
         <CreateAccountSection dataCy='create-account-section' isDemo={isDemo} />
         <MeetingMembersWithTasks meeting={meeting} />
         <MeetingMembersWithoutTasks meeting={meeting} />
-        <RetroTopics isDemo={isDemo} isEmail={referrer === 'email'} meeting={meeting} appOrigin={appOrigin} />
-        <SummaryPokerStories appOrigin={appOrigin} meeting={meeting} isEmail={referrer === 'email'} />
+        <RetroTopics
+          isDemo={isDemo}
+          isEmail={referrer === 'email'}
+          meeting={meeting}
+          appOrigin={appOrigin}
+        />
+        <SummaryPokerStories
+          appOrigin={appOrigin}
+          meeting={meeting}
+          isEmail={referrer === 'email'}
+        />
         <ContactUsFooter
           isDemo={isDemo}
           hasLearningLink={meetingType === ACTION}

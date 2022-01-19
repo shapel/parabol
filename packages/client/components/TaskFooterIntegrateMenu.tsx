@@ -70,10 +70,8 @@ const TaskFooterIntegrateMenu = (props: Props) => {
 
   const {id: viewerId, viewerTeamMember, assigneeTeamMember} = viewer
   if (!assigneeTeamMember || !viewerTeamMember) return null
-  const {
-    integrations: viewerIntegrations,
-    suggestedIntegrations: viewerSuggestedIntegrations
-  } = viewerTeamMember
+  const {integrations: viewerIntegrations, suggestedIntegrations: viewerSuggestedIntegrations} =
+    viewerTeamMember
   const {
     integrations: assigneeIntegrations,
     suggestedIntegrations: assigneeSuggestedIntegrations,

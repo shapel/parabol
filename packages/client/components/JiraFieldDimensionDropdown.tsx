@@ -12,8 +12,8 @@ import {JiraFieldDimensionDropdown_stage} from '../__generated__/JiraFieldDimens
 import Icon from './Icon'
 import PlainButton from './PlainButton/PlainButton'
 
-const JiraFieldMenuRoot = lazyPreload(async () =>
-  import(/* webpackChunkName: 'JiraFieldMenuRoot' */ './JiraFieldMenuRoot')
+const JiraFieldMenuRoot = lazyPreload(
+  async () => import(/* webpackChunkName: 'JiraFieldMenuRoot' */ './JiraFieldMenuRoot')
 )
 
 interface Props {
@@ -21,7 +21,6 @@ interface Props {
   isFacilitator: boolean
   stage: JiraFieldDimensionDropdown_stage
   submitScore(): void
-
 }
 
 const Wrapper = styled(PlainButton)<{isFacilitator: boolean}>(({isFacilitator}) => ({
@@ -46,7 +45,7 @@ const StyledIcon = styled(Icon)<{isFacilitator: boolean}>(({isFacilitator}) => (
 
 const labelLookup = {
   [SprintPokerDefaults.SERVICE_FIELD_COMMENT]: SprintPokerDefaults.SERVICE_FIELD_COMMENT_LABEL,
-  [SprintPokerDefaults.SERVICE_FIELD_NULL]: SprintPokerDefaults.SERVICE_FIELD_NULL_LABEL,
+  [SprintPokerDefaults.SERVICE_FIELD_NULL]: SprintPokerDefaults.SERVICE_FIELD_NULL_LABEL
 }
 
 const JiraFieldDimensionDropdown = (props: Props) => {
@@ -68,27 +67,28 @@ const JiraFieldDimensionDropdown = (props: Props) => {
 
   const label = labelLookup[serviceFieldName] || serviceFieldName
   return (
-    <Wrapper onMouseEnter={JiraFieldMenuRoot.preload} isFacilitator={isFacilitator}
+    <Wrapper
+      onMouseEnter={JiraFieldMenuRoot.preload}
+      isFacilitator={isFacilitator}
       onClick={onClick}
-      ref={originRef}>
+      ref={originRef}
+    >
       <CurrentValue>{label}</CurrentValue>
       <StyledIcon isFacilitator={isFacilitator}>{'expand_more'}</StyledIcon>
       {menuPortal(
-        <JiraFieldMenuRoot menuProps={menuProps} stage={stage} submitScore={submitScore}/>
+        <JiraFieldMenuRoot menuProps={menuProps} stage={stage} submitScore={submitScore} />
       )}
     </Wrapper>
   )
 }
 
-export default createFragmentContainer(JiraFieldDimensionDropdown,
-  {
-    stage: graphql`
+export default createFragmentContainer(JiraFieldDimensionDropdown, {
+  stage: graphql`
     fragment JiraFieldDimensionDropdown_stage on EstimateStage {
       ...JiraFieldMenuRoot_stage
       serviceField {
         name
       }
     }
-    `
-  }
-)
+  `
+})

@@ -1,7 +1,6 @@
 import {
   INewMeeting,
   IRemoteReflectionDrag,
-
   IRetroReflection,
   IRetrospectiveMeeting,
   NewMeetingPhase,
@@ -33,7 +32,7 @@ export interface ClientRetroReflection extends IRetroReflection {
 }
 
 export interface ParabolSearchQuery {
-  id: String!
-  queryString: String
-  statusFilters: [TaskStatusEnum!]
+  id: !string
+  queryString: string
+  statusFilters: [!TaskStatusEnum]
 }

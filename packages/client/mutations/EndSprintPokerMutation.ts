@@ -70,27 +70,25 @@ export const endSprintPokerTeamUpdater: SharedUpdater<EndSprintPokerMutation_tea
   handleRemoveTasks(removedTaskIds as any, store)
 }
 
-const EndSprintPokerMutation: StandardMutation<
-  TEndSprintPokerMutation,
-  HistoryMaybeLocalHandler
-> = (atmosphere, variables, {onError, onCompleted, history}) => {
-  return commitMutation<TEndSprintPokerMutation>(atmosphere, {
-    mutation,
-    variables,
-    updater: (store) => {
-      const payload = store.getRootField('endSprintPoker')
-      if (!payload) return
-      const context = {atmosphere, store: store as any}
-      endSprintPokerTeamUpdater(payload as any, context)
-    },
-    onCompleted: (res, errors) => {
-      if (onCompleted) {
-        onCompleted(res, errors)
-      }
-      endSprintPokerTeamOnNext(res.endSprintPoker as any, {atmosphere, history})
-    },
-    onError
-  })
-}
+const EndSprintPokerMutation: StandardMutation<TEndSprintPokerMutation, HistoryMaybeLocalHandler> =
+  (atmosphere, variables, {onError, onCompleted, history}) => {
+    return commitMutation<TEndSprintPokerMutation>(atmosphere, {
+      mutation,
+      variables,
+      updater: (store) => {
+        const payload = store.getRootField('endSprintPoker')
+        if (!payload) return
+        const context = {atmosphere, store: store as any}
+        endSprintPokerTeamUpdater(payload as any, context)
+      },
+      onCompleted: (res, errors) => {
+        if (onCompleted) {
+          onCompleted(res, errors)
+        }
+        endSprintPokerTeamOnNext(res.endSprintPoker as any, {atmosphere, history})
+      },
+      onError
+    })
+  }
 
 export default EndSprintPokerMutation

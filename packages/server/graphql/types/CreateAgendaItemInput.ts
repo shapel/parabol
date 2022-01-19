@@ -32,7 +32,7 @@ const CreateAgendaItemInput = new GraphQLInputObjectType({
     meetingId: {
       type: GraphQLString,
       description: 'The meeting ID of the agenda item'
-    },
+    }
   })
 })
 

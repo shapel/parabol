@@ -100,10 +100,11 @@ interface Props {
   useTaskChild: UseTaskChild
 }
 
-const TaskFooterUserAssigneeMenuRoot = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'TaskFooterUserAssigneeMenuRoot' */ '../TaskFooterUserAssigneeMenuRoot'
-  )
+const TaskFooterUserAssigneeMenuRoot = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'TaskFooterUserAssigneeMenuRoot' */ '../TaskFooterUserAssigneeMenuRoot'
+    )
 )
 
 const TaskFooterUserAssignee = (props: Props) => {
@@ -112,9 +113,12 @@ const TaskFooterUserAssignee = (props: Props) => {
   const userImage = user?.picture || avatarUser
   const preferredName = user?.preferredName || 'Unassigned'
   const {togglePortal, originRef, menuPortal, menuProps} = useMenu(MenuPosition.UPPER_LEFT)
-  const {tooltipPortal, openTooltip, closeTooltip, originRef: tipRef} = useTooltip<HTMLDivElement>(
-    MenuPosition.UPPER_CENTER
-  )
+  const {
+    tooltipPortal,
+    openTooltip,
+    closeTooltip,
+    originRef: tipRef
+  } = useTooltip<HTMLDivElement>(MenuPosition.UPPER_CENTER)
   return (
     <>
       <TooltipToggle

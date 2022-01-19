@@ -40,17 +40,17 @@ const removePokerTemplate = {
     // VALIDATION
     const {teamId} = template
     const {templates, settings} = await r({
-      templates: (r
+      templates: r
         .table('MeetingTemplate')
         .getAll(teamId, {index: 'teamId'})
         .filter({isActive: true, type: 'poker'})
         .orderBy('name')
-        .coerceTo('array') as unknown) as PokerTemplate[],
-      settings: (r
+        .coerceTo('array') as unknown as PokerTemplate[],
+      settings: r
         .table('MeetingSettings')
         .getAll(teamId, {index: 'teamId'})
         .filter({meetingType: 'poker'})
-        .nth(0) as unknown) as MeetingSettingsPoker
+        .nth(0) as unknown as MeetingSettingsPoker
     }).run()
 
     // RESOLUTION

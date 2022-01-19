@@ -150,38 +150,24 @@ const promptsInfo = [
 const templates = templateNames.map((templateName) => makeTemplate(templateName))
 const reflectPrompts = promptsInfo.map((promptInfo: PromptInfo) => makePrompt(promptInfo))
 
-export const up = async function(r: R) {
+export const up = async function (r: R) {
   try {
     await Promise.all([
-      r
-        .table('MeetingTemplate')
-        .insert(templates)
-        .run(),
-      r
-        .table('ReflectPrompt')
-        .insert(reflectPrompts)
-        .run()
+      r.table('MeetingTemplate').insert(templates).run(),
+      r.table('ReflectPrompt').insert(reflectPrompts).run()
     ])
   } catch (e) {
     console.log(e)
   }
 }
 
-export const down = async function(r: R) {
+export const down = async function (r: R) {
   const templateIds = templates.map(({id}) => id)
   const promptIds = reflectPrompts.map(({id}) => id)
   try {
     await Promise.all([
-      r
-        .table('MeetingTemplate')
-        .getAll(r.args(templateIds))
-        .delete()
-        .run(),
-      r
-        .table('ReflectPrompt')
-        .getAll(r.args(promptIds))
-        .delete()
-        .run()
+      r.table('MeetingTemplate').getAll(r.args(templateIds)).delete().run(),
+      r.table('ReflectPrompt').getAll(r.args(promptIds)).delete().run()
     ])
   } catch (e) {
     console.log(e)

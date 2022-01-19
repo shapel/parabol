@@ -38,15 +38,8 @@ interface Props extends WithAtmosphereProps, WithMutationProps {
 
 const AddTemplatePrompt = (props: Props) => {
   const addPrompt = () => {
-    const {
-      atmosphere,
-      prompts,
-      templateId,
-      onError,
-      onCompleted,
-      submitMutation,
-      submitting
-    } = props
+    const {atmosphere, prompts, templateId, onError, onCompleted, submitMutation, submitting} =
+      props
     if (submitting) return
     submitMutation()
     const sortOrders = prompts.map(({sortOrder}) => sortOrder)

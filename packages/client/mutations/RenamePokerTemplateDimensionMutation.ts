@@ -22,23 +22,20 @@ const mutation = graphql`
   }
 `
 
-const RenamePokerTemplateDimensionMutation: StandardMutation<TRenamePokerTemplateDimensionMutation> = (
-  atmosphere,
-  variables,
-  {onError, onCompleted}
-) => {
-  return commitMutation<TRenamePokerTemplateDimensionMutation>(atmosphere, {
-    mutation,
-    variables,
-    onCompleted,
-    onError,
-    optimisticUpdater: (store) => {
-      const {name, dimensionId} = variables
-      const dimension = store.get(dimensionId)
-      if (!dimension) return
-      dimension.setValue(name, 'name')
-    }
-  })
-}
+const RenamePokerTemplateDimensionMutation: StandardMutation<TRenamePokerTemplateDimensionMutation> =
+  (atmosphere, variables, {onError, onCompleted}) => {
+    return commitMutation<TRenamePokerTemplateDimensionMutation>(atmosphere, {
+      mutation,
+      variables,
+      onCompleted,
+      onError,
+      optimisticUpdater: (store) => {
+        const {name, dimensionId} = variables
+        const dimension = store.get(dimensionId)
+        if (!dimension) return
+        dimension.setValue(name, 'name')
+      }
+    })
+  }
 
 export default RenamePokerTemplateDimensionMutation

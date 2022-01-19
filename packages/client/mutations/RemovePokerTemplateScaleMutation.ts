@@ -25,14 +25,12 @@ const mutation = graphql`
   }
 `
 
-export const removePokerTemplateScaleTeamUpdater: SharedUpdater<RemovePokerTemplateScaleMutation_scale> = (
-  payload,
-  {store}
-) => {
-  const scaleId = getInProxy(payload, 'scale', 'id')
-  const teamId = getInProxy(payload, 'scale', 'teamId')
-  handleRemovePokerTemplateScale(scaleId, teamId, store)
-}
+export const removePokerTemplateScaleTeamUpdater: SharedUpdater<RemovePokerTemplateScaleMutation_scale> =
+  (payload, {store}) => {
+    const scaleId = getInProxy(payload, 'scale', 'id')
+    const teamId = getInProxy(payload, 'scale', 'teamId')
+    handleRemovePokerTemplateScale(scaleId, teamId, store)
+  }
 
 const RemovePokerTemplateScaleMutation: StandardMutation<IRemovePokerTemplateScaleMutation> = (
   atmosphere,

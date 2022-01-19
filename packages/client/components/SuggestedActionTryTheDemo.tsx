@@ -17,15 +17,8 @@ interface Props extends WithAtmosphereProps, WithMutationProps, RouteComponentPr
 
 class SuggestedActionTryTheDemo extends Component<Props> {
   onClick = () => {
-    const {
-      atmosphere,
-      history,
-      submitting,
-      submitMutation,
-      suggestedAction,
-      onError,
-      onCompleted
-    } = this.props
+    const {atmosphere, history, submitting, submitMutation, suggestedAction, onError, onCompleted} =
+      this.props
     const {id: suggestedActionId} = suggestedAction
     if (submitting) return
     submitMutation()

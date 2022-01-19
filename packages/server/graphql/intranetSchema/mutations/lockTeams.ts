@@ -39,11 +39,7 @@ const lockTeams = {
       updatedAt: new Date()
     }
     await Promise.all([
-      r
-        .table('Team')
-        .getAll(r.args(teamIds))
-        .update(updates)
-        .run(),
+      r.table('Team').getAll(r.args(teamIds)).update(updates).run(),
       updateTeamByTeamId(updates, teamIds)
     ])
     return true

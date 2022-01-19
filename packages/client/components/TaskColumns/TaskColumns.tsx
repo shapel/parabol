@@ -38,15 +38,8 @@ interface Props {
 }
 
 const TaskColumns = (props: Props) => {
-  const {
-    area,
-    isMyMeetingSection,
-    meetingId,
-    myTeamMemberId,
-    teamMemberFilterId,
-    teams,
-    tasks
-  } = props
+  const {area, isMyMeetingSection, meetingId, myTeamMemberId, teamMemberFilterId, teams, tasks} =
+    props
   const atmosphere = useAtmosphere()
   const groupedTasks = useMemo(() => {
     return makeTasksByStatus(tasks)

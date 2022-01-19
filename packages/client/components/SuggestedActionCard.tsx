@@ -58,14 +58,8 @@ const FloatingSealIcon = styled(Icon)({
 
 class SuggestedActionCard extends Component<Props> {
   onCancel = () => {
-    const {
-      atmosphere,
-      submitting,
-      submitMutation,
-      suggestedActionId,
-      onCompleted,
-      onError
-    } = this.props
+    const {atmosphere, submitting, submitMutation, suggestedActionId, onCompleted, onError} =
+      this.props
     if (submitting) return
     submitMutation()
     DismissSuggestedActionMutation(atmosphere, {suggestedActionId}, {onError, onCompleted})

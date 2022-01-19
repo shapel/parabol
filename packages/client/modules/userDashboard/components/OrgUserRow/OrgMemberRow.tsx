@@ -88,18 +88,20 @@ const MenuButton = forwardRef((props: FlatButtonProps, ref: Ref<HTMLButtonElemen
   </StyledButton>
 ))
 
-const LeaveOrgModal = lazyPreload(() =>
-  import(/* webpackChunkName: 'LeaveOrgModal' */ '../LeaveOrgModal/LeaveOrgModal')
+const LeaveOrgModal = lazyPreload(
+  () => import(/* webpackChunkName: 'LeaveOrgModal' */ '../LeaveOrgModal/LeaveOrgModal')
 )
 
-const BillingLeaderActionMenu = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'BillingLeaderActionMenu' */ '../../../../components/BillingLeaderActionMenu'
-  )
+const BillingLeaderActionMenu = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'BillingLeaderActionMenu' */ '../../../../components/BillingLeaderActionMenu'
+    )
 )
 
-const RemoveFromOrgModal = lazyPreload(() =>
-  import(/* webpackChunkName: 'RemoveFromOrgModal' */ '../RemoveFromOrgModal/RemoveFromOrgModal')
+const RemoveFromOrgModal = lazyPreload(
+  () =>
+    import(/* webpackChunkName: 'RemoveFromOrgModal' */ '../RemoveFromOrgModal/RemoveFromOrgModal')
 )
 
 const OrgMemberRow = (props: Props) => {
@@ -145,9 +147,12 @@ const OrgMemberRow = (props: Props) => {
       })
     }
   }
-  const {tooltipPortal, openTooltip, closeTooltip, originRef: tooltipRef} = useTooltip<
-    HTMLDivElement
-  >(MenuPosition.LOWER_RIGHT)
+  const {
+    tooltipPortal,
+    openTooltip,
+    closeTooltip,
+    originRef: tooltipRef
+  } = useTooltip<HTMLDivElement>(MenuPosition.LOWER_RIGHT)
 
   return (
     <StyledRow>

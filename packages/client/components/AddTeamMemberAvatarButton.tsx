@@ -70,12 +70,12 @@ const StyledIcon = styled(Icon)<{isMeeting: boolean}>(
     }
 )
 
-const AddTeamMemberModal = lazyPreload(() =>
-  import(/* webpackChunkName: 'AddTeamMemberModal' */ './AddTeamMemberModal')
+const AddTeamMemberModal = lazyPreload(
+  () => import(/* webpackChunkName: 'AddTeamMemberModal' */ './AddTeamMemberModal')
 )
 
-const AddTeamMemberModalDemo = lazyPreload(() =>
-  import(/* webpackChunkName: 'AddTeamMemberModalDemo' */ './AddTeamMemberModalDemo')
+const AddTeamMemberModalDemo = lazyPreload(
+  () => import(/* webpackChunkName: 'AddTeamMemberModalDemo' */ './AddTeamMemberModalDemo')
 )
 
 const AddTeamMemberAvatarButton = (props: Props) => {

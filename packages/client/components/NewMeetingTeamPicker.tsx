@@ -10,11 +10,12 @@ import {NewMeetingTeamPicker_selectedTeam} from '~/__generated__/NewMeetingTeamP
 import NewMeetingDropdown from './NewMeetingDropdown'
 import styled from '@emotion/styled'
 
-const SelectTeamDropdown = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'SelectTeamDropdown' */
-    './SelectTeamDropdown'
-  )
+const SelectTeamDropdown = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'SelectTeamDropdown' */
+      './SelectTeamDropdown'
+    )
 )
 
 interface Props {

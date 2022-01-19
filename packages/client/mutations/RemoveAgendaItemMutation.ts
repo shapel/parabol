@@ -37,23 +37,21 @@ export const removeAgendaItemUpdater = (payload, {store}) => {
   handleRemoveAgendaItems(agendaItemId, store, meetingId)
 }
 
-const RemoveAgendaItemMutation: StandardMutation<
-  TRemoveAgendaItemMutation,
-  {meetingId?: string}
-> = (atmosphere, variables, {meetingId}) => {
-  return commitMutation<TRemoveAgendaItemMutation>(atmosphere, {
-    mutation,
-    variables,
-    updater: (store) => {
-      const payload = store.getRootField('removeAgendaItem')
-      if (!payload) return
-      removeAgendaItemUpdater(payload, {store})
-    },
-    optimisticUpdater: (store) => {
-      const {agendaItemId} = variables
-      handleRemoveAgendaItems(agendaItemId, store, meetingId)
-    }
-  })
-}
+const RemoveAgendaItemMutation: StandardMutation<TRemoveAgendaItemMutation, {meetingId?: string}> =
+  (atmosphere, variables, {meetingId}) => {
+    return commitMutation<TRemoveAgendaItemMutation>(atmosphere, {
+      mutation,
+      variables,
+      updater: (store) => {
+        const payload = store.getRootField('removeAgendaItem')
+        if (!payload) return
+        removeAgendaItemUpdater(payload, {store})
+      },
+      optimisticUpdater: (store) => {
+        const {agendaItemId} = variables
+        handleRemoveAgendaItems(agendaItemId, store, meetingId)
+      }
+    })
+  }
 
 export default RemoveAgendaItemMutation

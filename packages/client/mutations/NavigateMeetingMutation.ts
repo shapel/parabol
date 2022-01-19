@@ -94,14 +94,10 @@ export const navigateMeetingTeamUpdater: SharedUpdater<NavigateMeetingMutation_t
   payload,
   {store}
 ) => {
-  const meetingId = safeProxy(payload)
-    .getLinkedRecord('meeting')
-    .getValue('id')!
+  const meetingId = safeProxy(payload).getLinkedRecord('meeting').getValue('id')!
   const meeting = store.get<ClientRetrospectiveMeeting>(meetingId)
   if (!meeting) return
-  const viewerStageId = safeProxy(meeting)
-    .getLinkedRecord('localStage')
-    .getValue('id')
+  const viewerStageId = safeProxy(meeting).getLinkedRecord('localStage').getValue('id')
   const facilitatorStageId = safeProxy(meeting).getValue('facilitatorStageId')
   const oldMeeting = getBaseRecord(store, meetingId)
   if (!oldMeeting) {

@@ -20,7 +20,11 @@ const StyledIcon = styled(Icon)<{disabled: boolean | undefined}>(({disabled}) =>
 
 const Checkbox = (props: Props) => {
   const {active, className, disabled, onClick} = props
-  const icon = active ? 'check_box' : active === false ? 'check_box_outline_blank' : 'indeterminate_check_box'
+  const icon = active
+    ? 'check_box'
+    : active === false
+    ? 'check_box_outline_blank'
+    : 'indeterminate_check_box'
   return (
     <StyledIcon className={className} disabled={disabled} onClick={disabled ? undefined : onClick}>
       {icon}

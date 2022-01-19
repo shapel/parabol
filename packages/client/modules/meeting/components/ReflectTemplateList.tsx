@@ -76,7 +76,7 @@ const ReflectTemplateList = (props: Props) => {
   const {activeIdx, setActiveIdx, settings} = props
   const {team, teamTemplates} = settings
   const {id: teamId} = team
-  const activeTemplateId = settings.activeTemplate?.id ?? "-tmp"
+  const activeTemplateId = settings.activeTemplate?.id ?? '-tmp'
 
   const gotoTeamTemplates = () => {
     setActiveIdx(0)
@@ -119,7 +119,11 @@ const ReflectTemplateList = (props: Props) => {
           onClick={gotoPublicTemplates}
         />
       </StyledTabsBar>
-      <AddNewReflectTemplate teamId={teamId} reflectTemplates={teamTemplates} gotoTeamTemplates={gotoTeamTemplates} />
+      <AddNewReflectTemplate
+        teamId={teamId}
+        reflectTemplates={teamTemplates}
+        gotoTeamTemplates={gotoTeamTemplates}
+      />
       <SwipeableViews
         enableMouseEvents
         index={activeIdx}

@@ -63,24 +63,22 @@ const popOrgArchivedToast: OnNextHandler<
   })
 }
 
-export const archiveOrganizationOrganizationUpdater: SharedUpdater<ArchiveOrganizationMutation_organization> = (
-  payload,
-  {store}
-) => {
-  const viewer = store.getRoot().getLinkedRecord('viewer')!
-  const teams = payload.getLinkedRecords('teams')
-  if (!teams) return
+export const archiveOrganizationOrganizationUpdater: SharedUpdater<ArchiveOrganizationMutation_organization> =
+  (payload, {store}) => {
+    const viewer = store.getRoot().getLinkedRecord('viewer')!
+    const teams = payload.getLinkedRecords('teams')
+    if (!teams) return
 
-  // remove teams
-  const teamIds = teams.map((team) => team.getValue('id'))
-  teamIds.forEach((teamId) => {
-    safeRemoveNodeFromArray(teamId as string, viewer, 'teams')
-  })
+    // remove teams
+    const teamIds = teams.map((team) => team.getValue('id'))
+    teamIds.forEach((teamId) => {
+      safeRemoveNodeFromArray(teamId as string, viewer, 'teams')
+    })
 
-  // remove org
-  const orgId = payload.getValue('orgId')
-  safeRemoveNodeFromArray(orgId, viewer, 'organizations')
-}
+    // remove org
+    const orgId = payload.getValue('orgId')
+    safeRemoveNodeFromArray(orgId, viewer, 'organizations')
+  }
 
 export const archiveOrganizationOrganizationOnNext: OnNextHandler<
   ArchiveOrganizationMutation_organization,

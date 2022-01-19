@@ -78,10 +78,5 @@ const downloadAndCacheImage = async (
 }
 
 const createImageUrlHash = (imageUrl: string) => {
-  return base64url.encode(
-    crypto
-      .createHmac('sha256', serverSecret)
-      .update(imageUrl)
-      .digest()
-  )
+  return base64url.encode(crypto.createHmac('sha256', serverSecret).update(imageUrl).digest())
 }

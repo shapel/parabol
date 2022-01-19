@@ -60,10 +60,10 @@ const TaskFooterTeamAssigneeMenu = (props: Props) => {
       : teams
     return filteredTeams
   }, [teamIds, userIds])
-  const taskTeamIdx = useMemo(() => assignableTeams.findIndex(({id}) => id === teamId) + 1, [
-    teamId,
-    assignableTeams
-  ])
+  const taskTeamIdx = useMemo(
+    () => assignableTeams.findIndex(({id}) => id === teamId) + 1,
+    [teamId, assignableTeams]
+  )
 
   const atmosphere = useAtmosphere()
   const {submitting, submitMutation, onError, onCompleted} = useMutationProps()
@@ -99,11 +99,10 @@ const TaskFooterTeamAssigneeMenu = (props: Props) => {
   const handleTaskUpdate = (nextTeam: typeof newTeam) => async () => {
     if (!submitting && teamId !== nextTeam.id) {
       if (isGitHubTask || isJiraTask) {
-        const result = await atmosphere.fetchQuery<
-          TaskFooterTeamAssigneeMenu_viewerIntegrationsQuery
-        >(query, {
-          teamId: nextTeam.id
-        })
+        const result =
+          await atmosphere.fetchQuery<TaskFooterTeamAssigneeMenu_viewerIntegrationsQuery>(query, {
+            teamId: nextTeam.id
+          })
         const {github, atlassian} = result?.viewer?.teamMember?.integrations ?? {}
 
         if ((isGitHubTask && !github?.isActive) || (isJiraTask && !atlassian?.isActive)) {

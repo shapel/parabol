@@ -19,17 +19,10 @@ const safelyWithdrawVote = async (
     .get(reflectionGroupId)
     .update((group) => {
       return r.branch(
-        group('voterIds')
-          .offsetsOf(userId)
-          .count()
-          .ge(1),
+        group('voterIds').offsetsOf(userId).count().ge(1),
         {
           updatedAt: now,
-          voterIds: group('voterIds').deleteAt(
-            group('voterIds')
-              .offsetsOf(userId)
-              .nth(0)
-          )
+          voterIds: group('voterIds').deleteAt(group('voterIds').offsetsOf(userId).nth(0))
         },
         {}
       )

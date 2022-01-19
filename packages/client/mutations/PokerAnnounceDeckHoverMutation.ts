@@ -49,45 +49,43 @@ const removeHoveringUserFromStage = (stage: RecordProxy<EstimateStage>, userId: 
   ]
   stage.setLinkedRecords(nextHoveringUsers, 'hoveringUsers')
 }
-export const pokerAnnounceDeckHoverMeetingUpdater: SharedUpdater<PokerAnnounceDeckHoverMutation_meeting> = (
-  payload,
-  {store}
-) => {
-  const meetingId = payload.getValue('meetingId')
-  const user = payload.getLinkedRecord('user')
-  const userId = user.getValue('id')
-  const stageId = payload.getValue('stageId')
-  const isHover = payload.getValue('isHover')
-  const meeting = store.get<PokerMeeting_meeting>(meetingId)
-  if (!meeting) return
-  if (isHover) {
-    const phases = meeting.getLinkedRecords('phases')!
-    const estimatePhase = phases.find(
-      (phase) => phase.getValue('phaseType') === 'ESTIMATE'
-    ) as RecordProxy<EstimatePhase>
-    const stages = estimatePhase.getLinkedRecords('stages')
+export const pokerAnnounceDeckHoverMeetingUpdater: SharedUpdater<PokerAnnounceDeckHoverMutation_meeting> =
+  (payload, {store}) => {
+    const meetingId = payload.getValue('meetingId')
+    const user = payload.getLinkedRecord('user')
+    const userId = user.getValue('id')
+    const stageId = payload.getValue('stageId')
+    const isHover = payload.getValue('isHover')
+    const meeting = store.get<PokerMeeting_meeting>(meetingId)
+    if (!meeting) return
+    if (isHover) {
+      const phases = meeting.getLinkedRecords('phases')!
+      const estimatePhase = phases.find(
+        (phase) => phase.getValue('phaseType') === 'ESTIMATE'
+      ) as RecordProxy<EstimatePhase>
+      const stages = estimatePhase.getLinkedRecords('stages')
 
-    stages.forEach((stage) => {
-      if (stage.getValue('id') === stageId) {
-        const hoveringUsers = stage.getLinkedRecords('hoveringUsers')
-        if (!hoveringUsers) return
-        const existingUserHoverIdx = hoveringUsers.findIndex(
-          (user) => user.getValue('id') === userId
-        )
-        // add the hovering user to this stage
-        if (existingUserHoverIdx > -1) return
-        const nextHoveringUsers = [...hoveringUsers, user]
-        stage.setLinkedRecords(nextHoveringUsers, 'hoveringUsers')
-      } else {
-        removeHoveringUserFromStage(stage, userId)
-      }
-    })
-  } else {
-    const stage = store.get<EstimateStage>(stageId)
-    if (!stage) return
-    removeHoveringUserFromStage(stage, userId)
+      stages.forEach((stage) => {
+        if (stage.getValue('id') === stageId) {
+          const hoveringUsers = stage.getLinkedRecords('hoveringUsers')
+          if (!hoveringUsers) return
+          const existingUserHoverIdx = hoveringUsers.findIndex(
+            (user) => user.getValue('id') === userId
+          )
+          // add the hovering user to this stage
+          if (existingUserHoverIdx > -1) return
+          const nextHoveringUsers = [...hoveringUsers, user]
+          stage.setLinkedRecords(nextHoveringUsers, 'hoveringUsers')
+        } else {
+          removeHoveringUserFromStage(stage, userId)
+        }
+      })
+    } else {
+      const stage = store.get<EstimateStage>(stageId)
+      if (!stage) return
+      removeHoveringUserFromStage(stage, userId)
+    }
   }
-}
 
 const PokerAnnounceDeckHoverMutation: SimpleMutation<TPokerAnnounceDeckHoverMutation> = (
   atmosphere,

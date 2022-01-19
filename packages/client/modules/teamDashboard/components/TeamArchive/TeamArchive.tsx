@@ -184,9 +184,8 @@ const TeamArchive = (props: Props) => {
 
   const {edges} = filteredTasks
   const [columnCount] = useState(getColumnCount)
-  const _onRowsRenderedRef = useRef<
-    ({startIndex, stopIndex}: {startIndex: number; stopIndex: number}) => void
-  >()
+  const _onRowsRenderedRef =
+    useRef<({startIndex, stopIndex}: {startIndex: number; stopIndex: number}) => void>()
   const gridRef = useRef<any>(null)
   const oldEdgesRef = useRef<typeof edges>()
   const getIndex = (columnIndex: number, rowIndex: number) => {

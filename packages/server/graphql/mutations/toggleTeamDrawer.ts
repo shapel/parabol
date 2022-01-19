@@ -41,9 +41,7 @@ const toggleTeamDrawer = {
       .get(viewerTeamMemberId)
       .update((teamMember) => ({
         openDrawer: r.branch(
-          teamMember('openDrawer')
-            .default(null)
-            .eq(teamDrawerType),
+          teamMember('openDrawer').default(null).eq(teamDrawerType),
           null,
           teamDrawerType
         )

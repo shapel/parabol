@@ -59,10 +59,11 @@ const TeamLeadLabel = styled('div')<{isLead: boolean}>(({isLead}) => ({
   lineHeight: '12px'
 }))
 
-const TeamMemberAvatarMenu = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'TeamMemberAvatarMenu' */ '../../../../components/DashboardAvatars/TeamMemberAvatarMenu'
-  )
+const TeamMemberAvatarMenu = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'TeamMemberAvatarMenu' */ '../../../../components/DashboardAvatars/TeamMemberAvatarMenu'
+    )
 )
 
 interface Props {

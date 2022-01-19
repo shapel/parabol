@@ -13,8 +13,8 @@ interface Props {
   suggestedAction: SuggestedActionInviteYourTeam_suggestedAction
 }
 
-const AddTeamMemberModal = lazy(() =>
-  import(/* webpackChunkName: 'AddTeamMemberModal' */ './AddTeamMemberModal')
+const AddTeamMemberModal = lazy(
+  () => import(/* webpackChunkName: 'AddTeamMemberModal' */ './AddTeamMemberModal')
 )
 
 const TeamName = styled('span')({

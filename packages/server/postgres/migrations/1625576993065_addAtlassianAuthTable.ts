@@ -40,11 +40,7 @@ export async function up(): Promise<void> {
 
   const atlassianIntegrations = await r
     .table('AtlassianAuth')
-    .filter((row) =>
-      row('accessToken')
-        .default(null)
-        .ne(null)
-    )
+    .filter((row) => row('accessToken').default(null).ne(null))
     .run()
   const auths = atlassianIntegrations.map(
     ({

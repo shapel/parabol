@@ -161,8 +161,9 @@ const AddTeamMemberModal = (props: Props) => {
       } else if (alreadyInvitedEmails.length > 2) {
         onError(
           new Error(
-            `${alreadyInvitedEmails[0]} and ${alreadyInvitedEmails.length -
-              1} other emails are already on the team`
+            `${alreadyInvitedEmails[0]} and ${
+              alreadyInvitedEmails.length - 1
+            } other emails are already on the team`
           )
         )
       }

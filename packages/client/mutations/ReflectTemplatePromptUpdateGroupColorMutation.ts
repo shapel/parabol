@@ -22,20 +22,18 @@ const mutation = graphql`
   }
 `
 
-const ReflectTemplatePromptUpdateGroupColorMutation: SimpleMutation<TReflectTemplatePromptUpdateGroupColorMutation> = (
-  atmosphere,
-  variables
-) => {
-  return commitMutation<TReflectTemplatePromptUpdateGroupColorMutation>(atmosphere, {
-    mutation,
-    variables,
-    optimisticUpdater: (store) => {
-      const {groupColor, promptId} = variables
-      const prompt = store.get(promptId)
-      if (!prompt) return
-      prompt.setValue(groupColor, 'groupColor')
-    }
-  })
-}
+const ReflectTemplatePromptUpdateGroupColorMutation: SimpleMutation<TReflectTemplatePromptUpdateGroupColorMutation> =
+  (atmosphere, variables) => {
+    return commitMutation<TReflectTemplatePromptUpdateGroupColorMutation>(atmosphere, {
+      mutation,
+      variables,
+      optimisticUpdater: (store) => {
+        const {groupColor, promptId} = variables
+        const prompt = store.get(promptId)
+        if (!prompt) return
+        prompt.setValue(groupColor, 'groupColor')
+      }
+    })
+  }
 
 export default ReflectTemplatePromptUpdateGroupColorMutation

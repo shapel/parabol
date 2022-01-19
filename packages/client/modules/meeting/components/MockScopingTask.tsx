@@ -12,7 +12,6 @@ export const skeletonShine = keyframes`
   }
 `
 
-
 // const Checkbox = styled(Icon)({
 //   cursor: 'default'
 // })
@@ -41,7 +40,7 @@ const MockScopingTask = (props: Props) => {
   const {idx} = props
   return (
     <MockTemplateItemBody>
-      <Checkbox active={false} onClick={() => { }} />
+      <Checkbox active={false} onClick={() => {}} />
       <MockTemplateItemTitle delay={idx * 20} />
     </MockTemplateItemBody>
   )

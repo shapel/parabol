@@ -75,8 +75,8 @@ const PanelRow = styled('div')({
   textAlign: 'center'
 })
 
-const UserAvatarInput = lazy(() =>
-  import(/* webpackChunkName: 'UserAvatarInput' */ '../../../components/UserAvatarInput')
+const UserAvatarInput = lazy(
+  () => import(/* webpackChunkName: 'UserAvatarInput' */ '../../../components/UserAvatarInput')
 )
 
 interface Props extends WithAtmosphereProps, WithMutationProps, WithFormProps<'preferredName'> {

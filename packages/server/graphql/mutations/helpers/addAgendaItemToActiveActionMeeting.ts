@@ -42,11 +42,7 @@ const addAgendaItemToActiveActionMeeting = async (
         updatedAt: now
       })
       .run(),
-    r
-      .table('AgendaItem')
-      .get(agendaItemId)
-      .update({meetingId: meetingId})
-      .run(),
+    r.table('AgendaItem').get(agendaItemId).update({meetingId: meetingId}).run(),
     insertDiscussions([
       {
         id: discussionId,

@@ -72,7 +72,8 @@ const TemplateScaleValueList = (props: Props) => {
                             scale={scale}
                             scaleValue={scaleValue}
                             isDragging={dragSnapshot.isDragging}
-                            dragProvided={dragProvided} />
+                            dragProvided={dragProvided}
+                          />
                         )
                       }}
                     </Draggable>

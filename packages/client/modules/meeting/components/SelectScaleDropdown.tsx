@@ -47,7 +47,10 @@ const SelectScaleDropdown = (props: Props) => {
   const {selectedScale, team} = dimension
   const {id: seletedScaleId} = selectedScale
   const {id: teamId, scales} = team
-  const defaultActiveIdx = useMemo(() => scales.findIndex(({id}) => id === seletedScaleId), [dimension])
+  const defaultActiveIdx = useMemo(
+    () => scales.findIndex(({id}) => id === seletedScaleId),
+    [dimension]
+  )
 
   const atmosphere = useAtmosphere()
   const {onError, onCompleted, submitting, submitMutation} = useMutationProps()
@@ -67,24 +70,32 @@ const SelectScaleDropdown = (props: Props) => {
   }
 
   return (
-    <StyledMenu ariaLabel={'Select the scale for this dimension'} {...menuProps} defaultActiveIdx={defaultActiveIdx}>
-      {scales
-        .map((scale) => (
-          <ScaleDropdownMenuItem key={scale.id} scale={scale} dimension={dimension} scaleCount={scales.length} closePortal={closePortal} />
-        ))
-      }
+    <StyledMenu
+      ariaLabel={'Select the scale for this dimension'}
+      {...menuProps}
+      defaultActiveIdx={defaultActiveIdx}
+    >
+      {scales.map((scale) => (
+        <ScaleDropdownMenuItem
+          key={scale.id}
+          scale={scale}
+          dimension={dimension}
+          scaleCount={scales.length}
+          closePortal={closePortal}
+        />
+      ))}
       <MenuItemHR key='HR1' />
-      {scales.length < Threshold.MAX_POKER_TEMPLATE_SCALES &&
+      {scales.length < Threshold.MAX_POKER_TEMPLATE_SCALES && (
         <MenuItem
           key='create'
           label={
             <AddScaleLink palette='blue' onClick={addScale} waiting={submitting}>
               <AddScaleLinkPlus>add</AddScaleLinkPlus>
-            Create a Scale
-          </AddScaleLink>
+              Create a Scale
+            </AddScaleLink>
           }
         />
-      }
+      )}
     </StyledMenu>
   )
 }

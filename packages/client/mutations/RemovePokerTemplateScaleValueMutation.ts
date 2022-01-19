@@ -20,24 +20,21 @@ const mutation = graphql`
   }
 `
 
-const RemovePokerTemplateScaleValueMutation: StandardMutation<IRemovePokerTemplateScaleValueMutation> = (
-  atmosphere,
-  variables,
-  {onError, onCompleted}
-) => {
-  return commitMutation<IRemovePokerTemplateScaleValueMutation>(atmosphere, {
-    mutation,
-    variables,
-    onCompleted,
-    onError,
-    optimisticUpdater: (store) => {
-      const {scaleId, label} = variables
-      const scale = store.get(scaleId)
-      if (!scale) return
-      const scaleValueId = `${scale.getDataID()}:${label}`
-      safeRemoveNodeFromArray(scaleValueId, scale, 'values')
-    }
-  })
-}
+const RemovePokerTemplateScaleValueMutation: StandardMutation<IRemovePokerTemplateScaleValueMutation> =
+  (atmosphere, variables, {onError, onCompleted}) => {
+    return commitMutation<IRemovePokerTemplateScaleValueMutation>(atmosphere, {
+      mutation,
+      variables,
+      onCompleted,
+      onError,
+      optimisticUpdater: (store) => {
+        const {scaleId, label} = variables
+        const scale = store.get(scaleId)
+        if (!scale) return
+        const scaleValueId = `${scale.getDataID()}:${label}`
+        safeRemoveNodeFromArray(scaleValueId, scale, 'values')
+      }
+    })
+  }
 
 export default RemovePokerTemplateScaleValueMutation

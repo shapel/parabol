@@ -27,11 +27,7 @@ export default {
     const {
       metadata: {orgId}
     } = customer
-    await r
-      .table('Organization')
-      .get(orgId)
-      .update({creditCard})
-      .run()
+    await r.table('Organization').get(orgId).update({creditCard}).run()
     return true
   }
 }

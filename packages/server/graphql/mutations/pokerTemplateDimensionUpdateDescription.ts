@@ -27,10 +27,7 @@ const pokerTemplateDimensionUpdateDescription = {
     const now = new Date()
     const operationId = dataLoader.share()
     const subOptions = {operationId, mutatorId}
-    const dimension = await r
-      .table('TemplateDimension')
-      .get(dimensionId)
-      .run()
+    const dimension = await r.table('TemplateDimension').get(dimensionId).run()
     const viewerId = getUserId(authToken)
 
     // AUTH

@@ -24,10 +24,7 @@ const removePokerTemplateDimension = {
     const now = new Date()
     const operationId = dataLoader.share()
     const subOptions = {operationId, mutatorId}
-    const dimension = await r
-      .table('TemplateDimension')
-      .get(dimensionId)
-      .run()
+    const dimension = await r.table('TemplateDimension').get(dimensionId).run()
     const viewerId = getUserId(authToken)
 
     // AUTH
@@ -44,11 +41,7 @@ const removePokerTemplateDimension = {
       .table('TemplateDimension')
       .getAll(teamId, {index: 'teamId'})
       .filter({templateId})
-      .filter((row) =>
-        row('removedAt')
-          .default(null)
-          .eq(null)
-      )
+      .filter((row) => row('removedAt').default(null).eq(null))
       .count()
       .default(0)
       .run()
@@ -58,11 +51,7 @@ const removePokerTemplateDimension = {
     }
 
     // RESOLUTION
-    await r
-      .table('TemplateDimension')
-      .get(dimensionId)
-      .update({removedAt: now})
-      .run()
+    await r.table('TemplateDimension').get(dimensionId).update({removedAt: now}).run()
 
     const data = {dimensionId, templateId}
     publish(

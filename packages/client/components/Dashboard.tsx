@@ -16,21 +16,23 @@ import MobileDashTopBar from './MobileDashTopBar'
 import SwipeableDashSidebar from './SwipeableDashSidebar'
 import {PALETTE} from '~/styles/paletteV3'
 
-const MeetingsDash = lazy(() =>
-  import(/* webpackChunkName: 'MeetingsDash' */ '../components/MeetingsDash')
+const MeetingsDash = lazy(
+  () => import(/* webpackChunkName: 'MeetingsDash' */ '../components/MeetingsDash')
 )
-const UserDashboard = lazy(() =>
-  import(
-    /* webpackChunkName: 'UserDashboard' */ '../modules/userDashboard/components/UserDashboard/UserDashboard'
-  )
+const UserDashboard = lazy(
+  () =>
+    import(
+      /* webpackChunkName: 'UserDashboard' */ '../modules/userDashboard/components/UserDashboard/UserDashboard'
+    )
 )
-const TeamRoot = lazy(() =>
-  import(/* webpackChunkName: 'TeamRoot' */ '../modules/teamDashboard/components/TeamRoot')
+const TeamRoot = lazy(
+  () => import(/* webpackChunkName: 'TeamRoot' */ '../modules/teamDashboard/components/TeamRoot')
 )
-const NewTeam = lazy(() =>
-  import(
-    /* webpackChunkName: 'NewTeamRoot' */ '../modules/newTeam/containers/NewTeamForm/NewTeamRoot'
-  )
+const NewTeam = lazy(
+  () =>
+    import(
+      /* webpackChunkName: 'NewTeamRoot' */ '../modules/newTeam/containers/NewTeamForm/NewTeamRoot'
+    )
 )
 
 interface Props {

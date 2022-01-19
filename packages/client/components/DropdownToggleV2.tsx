@@ -44,7 +44,9 @@ const DropdownToggleV2 = forwardRef((props: Props, ref: Ref<HTMLDivElement>) => 
       onClick={disabled ? undefined : onClick}
     >
       {children}
-      {!disabled && <DropdownIcon hasCustomIcon={Boolean(icon)}>{icon || 'expand_more'}</DropdownIcon>}
+      {!disabled && (
+        <DropdownIcon hasCustomIcon={Boolean(icon)}>{icon || 'expand_more'}</DropdownIcon>
+      )}
     </DropdownBlock>
   )
 })

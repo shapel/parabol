@@ -35,8 +35,8 @@ const UpvoteIcon = styled(Icon)<{isExpanded: boolean; isEnabled: boolean}>(
         ? '#fff'
         : 'rgba(255, 255, 255, .25)'
       : isEnabled
-        ? PALETTE.SLATE_600
-        : PALETTE.SLATE_400,
+      ? PALETTE.SLATE_600
+      : PALETTE.SLATE_400,
     cursor: isEnabled ? 'pointer' : undefined,
     fontSize: ICON_SIZE.MD18,
     height: 24,
@@ -54,8 +54,8 @@ const VoteCount = styled('span')<{voteCount: number; isExpanded: boolean}>(
         ? PALETTE.SLATE_200
         : '#fff'
       : voteCount === 0
-        ? PALETTE.SLATE_700
-        : PALETTE.SKY_500,
+      ? PALETTE.SLATE_700
+      : PALETTE.SKY_500,
     fontWeight: 600,
     padding: '0 4px',
     userSelect: 'none'

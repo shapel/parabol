@@ -70,11 +70,12 @@ const secondLink = {
   marginLeft: 8
 }
 
-const TeamDashTeamMemberMenu = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'TeamDashTeamMemberMenu' */
-    '../../../../components/TeamDashTeamMemberMenu'
-  )
+const TeamDashTeamMemberMenu = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'TeamDashTeamMemberMenu' */
+      '../../../../components/TeamDashTeamMemberMenu'
+    )
 )
 
 const TeamHeaderAndAvatars = styled('div')({

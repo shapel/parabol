@@ -33,10 +33,7 @@ export default {
     const viewerId = getUserId(authToken)
 
     // AUTH
-    const meeting = await r
-      .table('NewMeeting')
-      .get(meetingId)
-      .run()
+    const meeting = await r.table('NewMeeting').get(meetingId).run()
     if (!meeting) return standardError(new Error('Meeting not found'), {userId: viewerId})
     const {endedAt, phases, teamId} = meeting
     if (!isTeamMember(authToken, teamId)) {

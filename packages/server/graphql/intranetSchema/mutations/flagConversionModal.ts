@@ -24,10 +24,7 @@ const flagConversionModal = {
     requireSU(authToken)
 
     // VALIDATION
-    const organization = await r
-      .table('Organization')
-      .get(orgId)
-      .run()
+    const organization = await r.table('Organization').get(orgId).run()
     if (!organization) {
       return {error: {message: 'Invalid orgId'}}
     }

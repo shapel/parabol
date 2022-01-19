@@ -70,10 +70,7 @@ const addReactjiToReactable = {
 
     //AUTH
     const dbTable = tableLookup[reactableType]
-    const reactable = (await r
-      .table(dbTable)
-      .get(reactableId)
-      .run()) as Reactable
+    const reactable = (await r.table(dbTable).get(reactableId).run()) as Reactable
     if (!reactable) {
       return {error: {message: `Item does not exist`}}
     }

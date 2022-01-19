@@ -38,10 +38,7 @@ export default {
     // VALIDATION
     const formattedDueDate = new Date(dueDate)
     const nextDueDate = isValidDate(formattedDueDate) ? formattedDueDate : null
-    const task = await r
-      .table('Task')
-      .get(taskId)
-      .run()
+    const task = await r.table('Task').get(taskId).run()
     if (!task || !isTeamMember(authToken, task.teamId)) {
       return standardError(new Error('Task not found'), {userId: viewerId})
     }

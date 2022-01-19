@@ -62,9 +62,12 @@ const StageTimerModalTimeLimit = (props: Props) => {
   // scheduledEndTime means we're editing an existing timer
   const atmosphere = useAtmosphere()
   const [minuteTimeLimit, setMinuteTimeLimit] = useState(initialTimeLimit)
-  const {menuPortal, togglePortal, menuProps: minutePickerProps, originRef} = useMenu<
-    HTMLDivElement
-  >(MenuPosition.LOWER_LEFT, {
+  const {
+    menuPortal,
+    togglePortal,
+    menuProps: minutePickerProps,
+    originRef
+  } = useMenu<HTMLDivElement>(MenuPosition.LOWER_LEFT, {
     id: 'StageTimerMinutePicker',
     parentId: 'StageTimerModal',
     isDropdown: true

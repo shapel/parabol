@@ -33,11 +33,7 @@ const setPhaseFocus = {
 
     // AUTH
     const viewerId = getUserId(authToken)
-    const meeting = await r
-      .table('NewMeeting')
-      .get(meetingId)
-      .default(null)
-      .run()
+    const meeting = await r.table('NewMeeting').get(meetingId).default(null).run()
     if (!meeting) return standardError(new Error('Meeting not found'), {userId: viewerId})
     const {endedAt, facilitatorUserId, phases} = meeting
     if (endedAt) return standardError(new Error('Meeting already completed'), {userId: viewerId})
@@ -55,11 +51,7 @@ const setPhaseFocus = {
     // RESOLUTION
     // mutative
     reflectPhase.focusedPromptId = focusedPromptId ?? undefined
-    await r
-      .table('NewMeeting')
-      .get(meetingId)
-      .update(meeting)
-      .run()
+    await r.table('NewMeeting').get(meetingId).update(meeting).run()
     const data = {meetingId}
     publish(SubscriptionChannel.MEETING, meetingId, 'SetPhaseFocusPayload', data, subOptions)
     return data

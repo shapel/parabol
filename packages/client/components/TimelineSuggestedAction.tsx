@@ -10,26 +10,32 @@ interface Props {
 }
 
 const lookup = {
-  SuggestedActionInviteYourTeam: lazy(() =>
-    import(
-      /* webpackChunkName: 'SuggestedActionInviteYourTeam' */ './SuggestedActionInviteYourTeam'
-    )
+  SuggestedActionInviteYourTeam: lazy(
+    () =>
+      import(
+        /* webpackChunkName: 'SuggestedActionInviteYourTeam' */ './SuggestedActionInviteYourTeam'
+      )
   ),
-  SuggestedActionTryTheDemo: lazy(() =>
-    import(/* webpackChunkName: 'SuggestedActionTryTheDemo' */ './SuggestedActionTryTheDemo')
+  SuggestedActionTryTheDemo: lazy(
+    () => import(/* webpackChunkName: 'SuggestedActionTryTheDemo' */ './SuggestedActionTryTheDemo')
   ),
-  SuggestedActionTryRetroMeeting: lazy(() =>
-    import(
-      /* webpackChunkName: 'SuggestedActionTryRetroMeeting' */ './SuggestedActionTryRetroMeeting'
-    )
+  SuggestedActionTryRetroMeeting: lazy(
+    () =>
+      import(
+        /* webpackChunkName: 'SuggestedActionTryRetroMeeting' */ './SuggestedActionTryRetroMeeting'
+      )
   ),
-  SuggestedActionTryActionMeeting: lazy(() =>
-    import(
-      /* webpackChunkName: 'SuggestedActionTryActionMeeting' */ './SuggestedActionTryActionMeeting'
-    )
+  SuggestedActionTryActionMeeting: lazy(
+    () =>
+      import(
+        /* webpackChunkName: 'SuggestedActionTryActionMeeting' */ './SuggestedActionTryActionMeeting'
+      )
   ),
-  SuggestedActionCreateNewTeam: lazy(() =>
-    import(/* webpackChunkName: 'SuggestedActionCreateNewTeam' */ './SuggestedActionCreateNewTeam')
+  SuggestedActionCreateNewTeam: lazy(
+    () =>
+      import(
+        /* webpackChunkName: 'SuggestedActionCreateNewTeam' */ './SuggestedActionCreateNewTeam'
+      )
   )
 }
 

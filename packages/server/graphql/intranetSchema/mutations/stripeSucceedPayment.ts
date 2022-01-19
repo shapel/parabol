@@ -33,10 +33,7 @@ export default {
       livemode,
       metadata: {orgId}
     } = await manager.retrieveCustomer(customerId)
-    const org = await r
-      .table('Organization')
-      .get(orgId)
-      .run()
+    const org = await r.table('Organization').get(orgId).run()
     if (!org) {
       if (livemode) {
         throw new Error(
@@ -54,18 +51,12 @@ export default {
     }
     await Promise.all([
       r({
-        invoice: r
-          .table('Invoice')
-          .get(invoiceId)
-          .update({
-            creditCard,
-            paidAt: now,
-            status: 'PAID'
-          }),
-        teams: r
-          .table('Team')
-          .getAll(orgId, {index: 'orgId'})
-          .update(teamUpdates),
+        invoice: r.table('Invoice').get(invoiceId).update({
+          creditCard,
+          paidAt: now,
+          status: 'PAID'
+        }),
+        teams: r.table('Team').getAll(orgId, {index: 'orgId'}).update(teamUpdates),
         org: r
           .table('Organization')
           .get(orgId)

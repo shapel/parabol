@@ -23,39 +23,34 @@ const mutation = graphql`
   }
 `
 
-export const removePokerTemplateDimensionTeamUpdater: SharedUpdater<RemovePokerTemplateDimensionMutation_team> = (
-  payload,
-  {store}
-) => {
-  const dimensionId = getInProxy(payload, 'dimension', 'id')
-  const teamId = getInProxy(payload, 'dimension', 'teamId')
-  handleRemovePokerTemplateDimension(dimensionId, teamId, store)
-}
+export const removePokerTemplateDimensionTeamUpdater: SharedUpdater<RemovePokerTemplateDimensionMutation_team> =
+  (payload, {store}) => {
+    const dimensionId = getInProxy(payload, 'dimension', 'id')
+    const teamId = getInProxy(payload, 'dimension', 'teamId')
+    handleRemovePokerTemplateDimension(dimensionId, teamId, store)
+  }
 
-const RemovePokerTemplateDimensionMutation: StandardMutation<IRemovePokerTemplateDimensionMutation> = (
-  atmosphere,
-  variables,
-  {onError, onCompleted}
-) => {
-  return commitMutation<IRemovePokerTemplateDimensionMutation>(atmosphere, {
-    mutation,
-    variables,
-    onCompleted,
-    onError,
-    updater: (store) => {
-      const payload = store.getRootField('removePokerTemplateDimension')
-      if (!payload) return
-      removePokerTemplateDimensionTeamUpdater(payload, {atmosphere, store})
-    },
-    optimisticUpdater: (store) => {
-      const {dimensionId} = variables
-      const dimension = store.get(dimensionId)
-      if (!dimension) return
-      const teamId = dimension.getValue('teamId') as string
-      if (!teamId) return
-      handleRemovePokerTemplateDimension(dimensionId, teamId, store)
-    }
-  })
-}
+const RemovePokerTemplateDimensionMutation: StandardMutation<IRemovePokerTemplateDimensionMutation> =
+  (atmosphere, variables, {onError, onCompleted}) => {
+    return commitMutation<IRemovePokerTemplateDimensionMutation>(atmosphere, {
+      mutation,
+      variables,
+      onCompleted,
+      onError,
+      updater: (store) => {
+        const payload = store.getRootField('removePokerTemplateDimension')
+        if (!payload) return
+        removePokerTemplateDimensionTeamUpdater(payload, {atmosphere, store})
+      },
+      optimisticUpdater: (store) => {
+        const {dimensionId} = variables
+        const dimension = store.get(dimensionId)
+        if (!dimension) return
+        const teamId = dimension.getValue('teamId') as string
+        if (!teamId) return
+        handleRemovePokerTemplateDimension(dimensionId, teamId, store)
+      }
+    })
+  }
 
 export default RemovePokerTemplateDimensionMutation

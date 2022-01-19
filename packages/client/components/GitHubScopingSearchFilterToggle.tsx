@@ -16,10 +16,11 @@ const FilterIcon = styled(Icon)({
   fontSize: ICON_SIZE.MD24
 })
 
-const GitHubScopingSearchFilterMenuRoot = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'GitHubScopingSearchFilterMenuRoot' */ './GitHubScopingSearchFilterMenuRoot'
-  )
+const GitHubScopingSearchFilterMenuRoot = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'GitHubScopingSearchFilterMenuRoot' */ './GitHubScopingSearchFilterMenuRoot'
+    )
 )
 interface Props {
   meetingRef: GitHubScopingSearchFilterToggle_meeting$key

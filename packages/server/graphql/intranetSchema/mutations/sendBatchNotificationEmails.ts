@@ -22,12 +22,14 @@ const sendBatchNotificationEmails = {
     const r = await getRethink()
     const now = Date.now()
     const yesterday = new Date(now - ms('1d'))
-    const userNotificationCount = (await (r
-      .table('Notification')
-      // Only include notifications which occurred within the last day
-      .filter((row) => row('createdAt').gt(yesterday))
-      // de-dup users
-      .group('userId') as any)
+    const userNotificationCount = (await (
+      r
+        .table('Notification')
+        // Only include notifications which occurred within the last day
+        .filter((row) => row('createdAt').gt(yesterday))
+        // de-dup users
+        .group('userId') as any
+    )
       .count()
       .ungroup()
       .map((group) => ({

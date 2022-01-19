@@ -40,11 +40,7 @@ const addPokerTemplateScale = {
     const activeScales = await r
       .table('TemplateScale')
       .getAll(teamId, {index: 'teamId'})
-      .filter((row) =>
-        row('removedAt')
-          .default(null)
-          .eq(null)
-      )
+      .filter((row) => row('removedAt').default(null).eq(null))
       .run()
     if (activeScales.length >= Threshold.MAX_POKER_TEMPLATE_SCALES) {
       return standardError(new Error('Too many scales'), {userId: viewerId})
@@ -70,11 +66,7 @@ const addPokerTemplateScale = {
       const existingCopyCount = await r
         .table('TemplateScale')
         .getAll(teamId, {index: 'teamId'})
-        .filter((row) =>
-          row('removedAt')
-            .default(null)
-            .eq(null)
-        )
+        .filter((row) => row('removedAt').default(null).eq(null))
         .filter((row) => row('name').match(`^${copyName}`) as any)
         .count()
         .run()
@@ -94,10 +86,7 @@ const addPokerTemplateScale = {
       })
     }
 
-    await r
-      .table('TemplateScale')
-      .insert(newScale)
-      .run()
+    await r.table('TemplateScale').insert(newScale).run()
 
     const scaleId = newScale.id
     const data = {scaleId}

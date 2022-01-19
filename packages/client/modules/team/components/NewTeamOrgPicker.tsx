@@ -33,11 +33,12 @@ interface Props {
 
 const NO_ORGS = 'No organizations available'
 
-const NewTeamOrgDropdown = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'NewTeamOrgDropdown' */
-    '../../../components/NewTeamOrgDropdown'
-  )
+const NewTeamOrgDropdown = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'NewTeamOrgDropdown' */
+      '../../../components/NewTeamOrgDropdown'
+    )
 )
 
 const NewTeamOrgPicker = (props: Props) => {

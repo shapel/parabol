@@ -20,16 +20,20 @@ interface Props {
   dataCy: string
 }
 
-const TaskFooterTagMenu = lazyPreload(() =>
-  import(/* webpackChunkName: 'TaskFooterTagMenu' */ '../OutcomeCardStatusMenu/TaskFooterTagMenu')
+const TaskFooterTagMenu = lazyPreload(
+  () =>
+    import(/* webpackChunkName: 'TaskFooterTagMenu' */ '../OutcomeCardStatusMenu/TaskFooterTagMenu')
 )
 
 const TaskFooterTagMenuToggle = (props: Props) => {
   const {area, editorState, isAgenda, mutationProps, task, useTaskChild, dataCy} = props
   const {togglePortal, originRef, menuPortal, menuProps} = useMenu(MenuPosition.UPPER_RIGHT)
-  const {tooltipPortal, openTooltip, closeTooltip, originRef: tipRef} = useTooltip<HTMLDivElement>(
-    MenuPosition.UPPER_CENTER
-  )
+  const {
+    tooltipPortal,
+    openTooltip,
+    closeTooltip,
+    originRef: tipRef
+  } = useTooltip<HTMLDivElement>(MenuPosition.UPPER_CENTER)
   return (
     <>
       <CardButton

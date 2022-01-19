@@ -11,11 +11,13 @@ interface Props extends RouteComponentProps<{orgId: string}> {
   organization: OrganizationPage_organization
 }
 
-const OrgBilling = lazy(() =>
-  import(/* webpackChunkName: 'OrgBillingRoot' */ '../../containers/OrgBilling/OrgBillingRoot')
+const OrgBilling = lazy(
+  () =>
+    import(/* webpackChunkName: 'OrgBillingRoot' */ '../../containers/OrgBilling/OrgBillingRoot')
 )
-const OrgMembers = lazy(() =>
-  import(/* webpackChunkName: 'OrgMembersRoot' */ '../../containers/OrgMembers/OrgMembersRoot')
+const OrgMembers = lazy(
+  () =>
+    import(/* webpackChunkName: 'OrgMembersRoot' */ '../../containers/OrgMembers/OrgMembersRoot')
 )
 
 const OrganizationPage = (props: Props) => {

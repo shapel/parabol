@@ -26,15 +26,8 @@ interface Props {
 }
 
 const SuggestMentionableUsersRoot = (props: Props) => {
-  const {
-    active,
-    handleSelect,
-    originCoords,
-    setSuggestions,
-    suggestions,
-    triggerWord,
-    teamId
-  } = props
+  const {active, handleSelect, originCoords, setSuggestions, suggestions, triggerWord, teamId} =
+    props
   const atmosphere = useAtmosphere()
 
   return (

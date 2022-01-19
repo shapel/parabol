@@ -55,11 +55,12 @@ const InfoBlocks = styled('div')({
   }
 })
 
-const CreditCardModal = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'CreditCardModal' */
-    '../CreditCardModal/CreditCardModal'
-  )
+const CreditCardModal = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'CreditCardModal' */
+      '../CreditCardModal/CreditCardModal'
+    )
 )
 
 interface Props {

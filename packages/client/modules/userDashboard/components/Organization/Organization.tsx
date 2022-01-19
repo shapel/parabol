@@ -54,8 +54,8 @@ const ToggleNavBlock = styled('div')({
   margin: 0
 })
 
-const OrgAvatarInput = lazy(() =>
-  import(/* webpackChunkName: 'OrgAvatarInput' */ '../../../../components/OrgAvatarInput')
+const OrgAvatarInput = lazy(
+  () => import(/* webpackChunkName: 'OrgAvatarInput' */ '../../../../components/OrgAvatarInput')
 )
 
 interface Props extends RouteComponentProps<{}> {

@@ -16,13 +16,7 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
 
   const teams = (await r
     .table('Team')
-    .filter(
-      r
-        .row('jiraDimensionFields')
-        .default([])
-        .count()
-        .gt(0)
-    )
+    .filter(r.row('jiraDimensionFields').default([]).count().gt(0))
     .pluck('id', 'jiraDimensionFields')
     .run()) as Pick<Team, 'id' | 'jiraDimensionFields'>[]
   teams.forEach((team) => {

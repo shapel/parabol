@@ -43,10 +43,7 @@ export const upsertNotifications = async (
       id: (existingNotification && existingNotification.id) || undefined
     })
   })
-  await r
-    .table('SlackNotification')
-    .insert(upsertableNotifications, {conflict: 'replace'})
-    .run()
+  await r.table('SlackNotification').insert(upsertableNotifications, {conflict: 'replace'}).run()
 }
 
 const upsertAuth = async (
@@ -78,10 +75,7 @@ const upsertAuth = async (
     botUserId: slackRes.bot_user_id,
     botAccessToken: slackRes.access_token
   })
-  await r
-    .table('SlackAuth')
-    .insert(slackAuth, {conflict: 'replace'})
-    .run()
+  await r.table('SlackAuth').insert(slackAuth, {conflict: 'replace'}).run()
   return slackAuth.id
 }
 

@@ -62,18 +62,12 @@ export default {
 
     // RESOLUTION
     await r({
-      teamLead: r
-        .table('TeamMember')
-        .get(oldLeadTeamMemberId)
-        .update({
-          isLead: false
-        }),
-      promotee: r
-        .table('TeamMember')
-        .get(promoteeOnTeam.id)
-        .update({
-          isLead: true
-        })
+      teamLead: r.table('TeamMember').get(oldLeadTeamMemberId).update({
+        isLead: false
+      }),
+      promotee: r.table('TeamMember').get(promoteeOnTeam.id).update({
+        isLead: true
+      })
     }).run()
 
     const data = {teamId, oldLeaderId: oldLeadTeamMemberId, newLeaderId: promoteeOnTeam.id}

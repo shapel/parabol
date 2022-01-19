@@ -66,12 +66,15 @@ const EditableTemplateScaleValueColor = (props: Props) => {
     <ScaleValueColor ref={originRef} onClick={togglePortal}>
       <ColorBadge color={scaleValueColor} />
       <DropdownIcon>arrow_drop_down</DropdownIcon>
-      {menuPortal(<ScaleValuePalettePicker menuProps={menuProps}
-        scaleValueLabel={scaleValueLabel}
-        scaleValueColor={scaleValueColor}
-        scale={scale}
-        setScaleValueColor={setScaleValueColor}
-      />)}
+      {menuPortal(
+        <ScaleValuePalettePicker
+          menuProps={menuProps}
+          scaleValueLabel={scaleValueLabel}
+          scaleValueColor={scaleValueColor}
+          scale={scale}
+          setScaleValueColor={setScaleValueColor}
+        />
+      )}
     </ScaleValueColor>
   )
 }

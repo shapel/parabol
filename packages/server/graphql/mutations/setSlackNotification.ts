@@ -73,10 +73,7 @@ export default {
         id: (existingNotification && existingNotification.id) || undefined
       })
     })
-    await r
-      .table('SlackNotification')
-      .insert(notifications, {conflict: 'replace'})
-      .run()
+    await r.table('SlackNotification').insert(notifications, {conflict: 'replace'}).run()
     const slackNotificationIds = notifications.map(({id}) => id)
     const data = {userId: viewerId, slackNotificationIds}
     publish(SubscriptionChannel.TEAM, teamId, 'SetSlackNotificationPayload', data, subOptions)

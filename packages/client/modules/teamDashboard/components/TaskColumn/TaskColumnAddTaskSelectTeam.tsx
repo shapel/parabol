@@ -18,11 +18,12 @@ interface Props {
   userId: string
 }
 
-const SelectTeamDropdown = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'SelectTeamDropdown' */
-    '../../../../components/SelectTeamDropdown'
-  )
+const SelectTeamDropdown = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'SelectTeamDropdown' */
+      '../../../../components/SelectTeamDropdown'
+    )
 )
 
 const TaskColumnAddTaskSelectTeam = (props: Props) => {

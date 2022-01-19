@@ -34,14 +34,12 @@ const mutation = graphql`
   }
 `
 
-export const addReflectTemplatePromptTeamUpdater: SharedUpdater<AddReflectTemplatePromptMutation_team> = (
-  payload,
-  {store}
-) => {
-  const prompt = payload.getLinkedRecord('prompt')
-  if (!prompt) return
-  handleAddReflectTemplatePrompt(prompt, store)
-}
+export const addReflectTemplatePromptTeamUpdater: SharedUpdater<AddReflectTemplatePromptMutation_team> =
+  (payload, {store}) => {
+    const prompt = payload.getLinkedRecord('prompt')
+    if (!prompt) return
+    handleAddReflectTemplatePrompt(prompt, store)
+  }
 
 const AddReflectTemplatePromptMutation: StandardMutation<
   TAddReflectTemplatePromptMutation,

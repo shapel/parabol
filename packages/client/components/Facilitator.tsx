@@ -88,11 +88,12 @@ interface Props {
   meeting: Facilitator_meeting
 }
 
-const FacilitatorMenu = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'FacilitatorMenu' */
-    './FacilitatorMenu'
-  )
+const FacilitatorMenu = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'FacilitatorMenu' */
+      './FacilitatorMenu'
+    )
 )
 
 const Facilitator = (props: Props) => {

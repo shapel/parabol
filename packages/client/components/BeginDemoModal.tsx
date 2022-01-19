@@ -35,7 +35,7 @@ interface Props {
 
 const BeginDemoModal = (props: Props) => {
   const {closePortal} = props
-  const atmosphere = (useAtmosphere() as unknown) as LocalAtmosphere
+  const atmosphere = useAtmosphere() as unknown as LocalAtmosphere
   const {clientGraphQLServer} = atmosphere
   const {startBot} = clientGraphQLServer
   const onClick = () => {

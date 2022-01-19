@@ -22,23 +22,20 @@ const mutation = graphql`
   }
 `
 
-const ReflectTemplatePromptUpdateDescriptionMutation: StandardMutation<TReflectTemplatePromptUpdateDescriptionMutation> = (
-  atmosphere,
-  variables,
-  {onError, onCompleted}
-) => {
-  return commitMutation<TReflectTemplatePromptUpdateDescriptionMutation>(atmosphere, {
-    mutation,
-    variables,
-    onCompleted,
-    onError,
-    optimisticUpdater: (store) => {
-      const {description, promptId} = variables
-      const prompt = store.get(promptId)
-      if (!prompt) return
-      prompt.setValue(description, 'description')
-    }
-  })
-}
+const ReflectTemplatePromptUpdateDescriptionMutation: StandardMutation<TReflectTemplatePromptUpdateDescriptionMutation> =
+  (atmosphere, variables, {onError, onCompleted}) => {
+    return commitMutation<TReflectTemplatePromptUpdateDescriptionMutation>(atmosphere, {
+      mutation,
+      variables,
+      onCompleted,
+      onError,
+      optimisticUpdater: (store) => {
+        const {description, promptId} = variables
+        const prompt = store.get(promptId)
+        if (!prompt) return
+        prompt.setValue(description, 'description')
+      }
+    })
+  }
 
 export default ReflectTemplatePromptUpdateDescriptionMutation

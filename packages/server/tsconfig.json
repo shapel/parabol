@@ -12,7 +12,7 @@
     "lib": ["esnext", "dom"],
     "types": ["node", "jest", "jest-extended"]
   },
-  "exclude": ["**/node_modules", "types/githubTypes.ts", "postgres/migrationTemplate.ts"],
+  "exclude": ["**/node_modules", "types/githubTypes.ts", "types/gitlabTypes.ts"],
   "files": [
     "types/modules.d.ts",
     "../client/modules/email/components/SummaryEmail/MeetingSummaryEmail/MeetingSummaryEmail.tsx",
@@ -21,6 +21,7 @@
     "billing/debug.ts",
     "hubspot/backfillHubSpot.ts",
     "server.ts",
-    "debugJira.ts"
+    "debugJira.ts",
+    "postgres/migrationTemplate.ts"
   ]
 }

@@ -82,24 +82,22 @@ const mutation = graphql`
   }
 `
 
-export const acceptTeamInvitationNotificationUpdater: SharedUpdater<AcceptTeamInvitationMutation_notification> = (
-  payload,
-  {store}
-) => {
-  const team = payload.getLinkedRecord('team')
-  if (!team) return
-  handleAddTeams(team, store)
+export const acceptTeamInvitationNotificationUpdater: SharedUpdater<AcceptTeamInvitationMutation_notification> =
+  (payload, {store}) => {
+    const team = payload.getLinkedRecord('team')
+    if (!team) return
+    handleAddTeams(team, store)
 
-  // the viewer could have requested the meeting & had it return null
-  const activeMeetings = team.getLinkedRecords('activeMeetings')
-  const viewer = store.getRoot().getLinkedRecord('viewer')
-  if (viewer) {
-    activeMeetings.forEach((activeMeeting) => {
-      const meetingId = activeMeeting.getValue('id')
-      viewer.setLinkedRecord(activeMeeting, 'meeting', {meetingId})
-    })
+    // the viewer could have requested the meeting & had it return null
+    const activeMeetings = team.getLinkedRecords('activeMeetings')
+    const viewer = store.getRoot().getLinkedRecord('viewer')
+    if (viewer) {
+      activeMeetings.forEach((activeMeeting) => {
+        const meetingId = activeMeeting.getValue('id')
+        viewer.setLinkedRecord(activeMeeting, 'meeting', {meetingId})
+      })
+    }
   }
-}
 
 export const acceptTeamInvitationTeamUpdater: SharedUpdater<AcceptTeamInvitationMutation_team> = (
   payload,
@@ -133,14 +131,12 @@ interface LocalHandler extends HistoryMaybeLocalHandler {
   meetingId?: string | null
 }
 
-const AcceptTeamInvitationMutation: StandardMutation<
-  TAcceptTeamInvitationMutation,
-  LocalHandler
-> = (
-  atmosphere,
-  variables,
-  {history, onCompleted, onError, meetingId: locallyRequestedMeetingId}
-) => {
+const AcceptTeamInvitationMutation: StandardMutation<TAcceptTeamInvitationMutation, LocalHandler> =
+  (
+    atmosphere,
+    variables,
+    {history, onCompleted, onError, meetingId: locallyRequestedMeetingId}
+  ) => {
     return commitMutation<TAcceptTeamInvitationMutation>(atmosphere, {
       mutation,
       variables,

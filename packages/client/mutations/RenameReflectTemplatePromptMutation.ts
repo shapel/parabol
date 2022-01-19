@@ -22,23 +22,20 @@ const mutation = graphql`
   }
 `
 
-const RenameReflectTemplatePromptMutation: StandardMutation<TRenameReflectTemplatePromptMutation> = (
-  atmosphere,
-  variables,
-  {onError, onCompleted}
-) => {
-  return commitMutation<TRenameReflectTemplatePromptMutation>(atmosphere, {
-    mutation,
-    variables,
-    onCompleted,
-    onError,
-    optimisticUpdater: (store) => {
-      const {question, promptId} = variables
-      const prompt = store.get(promptId)
-      if (!prompt) return
-      prompt.setValue(question, 'question')
-    }
-  })
-}
+const RenameReflectTemplatePromptMutation: StandardMutation<TRenameReflectTemplatePromptMutation> =
+  (atmosphere, variables, {onError, onCompleted}) => {
+    return commitMutation<TRenameReflectTemplatePromptMutation>(atmosphere, {
+      mutation,
+      variables,
+      onCompleted,
+      onError,
+      optimisticUpdater: (store) => {
+        const {question, promptId} = variables
+        const prompt = store.get(promptId)
+        if (!prompt) return
+        prompt.setValue(question, 'question')
+      }
+    })
+  }
 
 export default RenameReflectTemplatePromptMutation

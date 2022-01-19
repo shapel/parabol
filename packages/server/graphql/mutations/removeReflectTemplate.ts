@@ -40,17 +40,17 @@ const removeReflectTemplate = {
     // VALIDATION
     const {teamId} = template
     const {templates, settings} = await r({
-      templates: (r
+      templates: r
         .table('MeetingTemplate')
         .getAll(teamId, {index: 'teamId'})
         .filter({isActive: true, type: 'retrospective'})
         .orderBy('name')
-        .coerceTo('array') as unknown) as ReflectTemplate[],
-      settings: (r
+        .coerceTo('array') as unknown as ReflectTemplate[],
+      settings: r
         .table('MeetingSettings')
         .getAll(teamId, {index: 'teamId'})
         .filter({meetingType: 'retrospective'})
-        .nth(0) as unknown) as MeetingSettingsRetrospective
+        .nth(0) as unknown as MeetingSettingsRetrospective
     }).run()
 
     // RESOLUTION

@@ -21,18 +21,20 @@ import {UseTaskChild} from '../../hooks/useTaskChildFocus'
 import useForceUpdate from '../../hooks/useForceUpdate'
 import lazyPreload from '../../utils/lazyPreload'
 
-const EditorLinkChanger = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'EditorLinkChanger' */
-    '../EditorLinkChanger/EditorLinkChanger'
-  )
+const EditorLinkChanger = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'EditorLinkChanger' */
+      '../EditorLinkChanger/EditorLinkChanger'
+    )
 )
 
-const EditorLinkViewer = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'EditorLinkViewer' */
-    '../EditorLinkViewer/EditorLinkViewer'
-  )
+const EditorLinkViewer = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'EditorLinkViewer' */
+      '../EditorLinkViewer/EditorLinkViewer'
+    )
 )
 
 const getEntityKeyAtCaret = (editorState: EditorState) => {

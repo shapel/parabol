@@ -100,12 +100,10 @@ export const archiveTeamTeamUpdater: SharedUpdater<ArchiveTeamMutation_team> = (
   handleAddNotifications(notification, store)
 }
 
-export const archiveTeamTeamOnNext: OnNextHandler<
-  ArchiveTeamMutation_team,
-  OnNextHistoryContext
-> = (payload, {atmosphere, history}) => {
-  popTeamArchivedToast(payload, {atmosphere, history})
-}
+export const archiveTeamTeamOnNext: OnNextHandler<ArchiveTeamMutation_team, OnNextHistoryContext> =
+  (payload, {atmosphere, history}) => {
+    popTeamArchivedToast(payload, {atmosphere, history})
+  }
 
 const ArchiveTeamMutation: StandardMutation<TArchiveTeamMutation, HistoryLocalHandler> = (
   atmosphere,

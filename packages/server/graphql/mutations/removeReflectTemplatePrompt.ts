@@ -24,10 +24,7 @@ const removeReflectTemplatePrompt = {
     const now = new Date()
     const operationId = dataLoader.share()
     const subOptions = {operationId, mutatorId}
-    const prompt = await r
-      .table('ReflectPrompt')
-      .get(promptId)
-      .run()
+    const prompt = await r.table('ReflectPrompt').get(promptId).run()
     const viewerId = getUserId(authToken)
 
     // AUTH

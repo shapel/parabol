@@ -1,7 +1,7 @@
 import {R} from 'rethinkdb-ts'
 import {MeetingTypeEnum} from 'parabol-client/types/graphql'
 
-export const up = async function(r: R) {
+export const up = async function (r: R) {
   try {
     const getThreadIds = (row) =>
       r.args(
@@ -14,11 +14,7 @@ export const up = async function(r: R) {
     await r
       .table('NewMeeting')
       .filter({meetingType: MeetingTypeEnum.action})
-      .filter((row) =>
-        row('endedAt')
-          .default(null)
-          .ne(null)
-      )
+      .filter((row) => row('endedAt').default(null).ne(null))
       .update(
         (row) => ({
           commentCount: r
@@ -40,7 +36,7 @@ export const up = async function(r: R) {
   }
 }
 
-export const down = async function(r: R) {
+export const down = async function (r: R) {
   try {
     await r
       .table('NewMeeting')

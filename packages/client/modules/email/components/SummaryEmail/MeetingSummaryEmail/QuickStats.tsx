@@ -10,27 +10,27 @@ import makePokerStats from './makePokerStats'
 import makeRetroStats from './makeRetroStats'
 
 const statLabel = (idx, len) =>
-({
-  color: PALETTE.SLATE_700,
-  fontFamily: FONT_FAMILY.SANS_SERIF,
-  borderTopLeftRadius: idx === 0 ? 4 : 0,
-  borderTopRightRadius: idx === len - 1 ? 4 : 0,
-  fontSize: 36,
-  lineHeight: '40px',
-  paddingTop: 12
-} as React.CSSProperties)
+  ({
+    color: PALETTE.SLATE_700,
+    fontFamily: FONT_FAMILY.SANS_SERIF,
+    borderTopLeftRadius: idx === 0 ? 4 : 0,
+    borderTopRightRadius: idx === len - 1 ? 4 : 0,
+    fontSize: 36,
+    lineHeight: '40px',
+    paddingTop: 12
+  } as React.CSSProperties)
 
 const descriptionLabel = (idx, len) =>
-({
-  fontFamily: FONT_FAMILY.SANS_SERIF,
-  borderBottomLeftRadius: idx === 0 ? 4 : 0,
-  borderBottomRightRadius: idx === len - 1 ? 4 : 0,
-  color: PALETTE.SLATE_600,
-  fontSize: 10,
-  fontWeight: 600,
-  paddingBottom: 12,
-  textTransform: 'uppercase'
-} as React.CSSProperties)
+  ({
+    fontFamily: FONT_FAMILY.SANS_SERIF,
+    borderBottomLeftRadius: idx === 0 ? 4 : 0,
+    borderBottomRightRadius: idx === len - 1 ? 4 : 0,
+    color: PALETTE.SLATE_600,
+    fontSize: 10,
+    fontWeight: 600,
+    paddingBottom: 12,
+    textTransform: 'uppercase'
+  } as React.CSSProperties)
 
 const tableStyle = {
   borderSpacing: '2px 0',

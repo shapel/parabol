@@ -32,10 +32,7 @@ export default {
       livemode,
       metadata: {orgId}
     } = await manager.retrieveCustomer(customerId)
-    const org = await r
-      .table('Organization')
-      .get(orgId)
-      .run()
+    const org = await r.table('Organization').get(orgId).run()
     if (!org) {
       if (livemode) {
         throw new Error(

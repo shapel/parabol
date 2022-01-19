@@ -27,15 +27,8 @@ interface Props extends WithAtmosphereProps, WithMutationProps {
   teamMember: PromoteTeamMemberModal_teamMember
 }
 const PromoteTeamMemberModal = (props: Props) => {
-  const {
-    atmosphere,
-    closePortal,
-    submitMutation,
-    submitting,
-    onError,
-    onCompleted,
-    teamMember
-  } = props
+  const {atmosphere, closePortal, submitMutation, submitting, onError, onCompleted, teamMember} =
+    props
   const {preferredName, teamId, newTeamLeadEmail} = teamMember
   const handleClick = () => {
     submitMutation()

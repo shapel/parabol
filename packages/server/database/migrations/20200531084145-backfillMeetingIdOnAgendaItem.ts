@@ -1,6 +1,6 @@
 import {MeetingTypeEnum, NewMeetingPhaseTypeEnum} from 'parabol-client/types/graphql'
 
-export const up = async function(r) {
+export const up = async function (r) {
   try {
     const actionMeetings = await r
       .table('NewMeeting')
@@ -37,7 +37,7 @@ export const up = async function(r) {
   }
 }
 
-export const down = async function(r) {
+export const down = async function (r) {
   try {
     await r
       .table('AgendaItem')

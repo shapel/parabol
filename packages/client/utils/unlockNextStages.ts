@@ -5,13 +5,16 @@ import unlockAllStagesForPhase from './unlockAllStagesForPhase'
 
 const phasesWithExtraRequirements = [GROUP, DISCUSS]
 
-const unlockStagesForParticipants = (facilitatorStageId: string, phases: {
-  phaseType: string,
-  stages: {
-    id: string
-    [key: string]: string
+const unlockStagesForParticipants = (
+  facilitatorStageId: string,
+  phases: {
+    phaseType: string
+    stages: {
+      id: string
+      [key: string]: string
+    }[]
   }[]
-}[]) => {
+) => {
   const stageRes = findStageById(phases, facilitatorStageId)
   if (!stageRes) return []
   const {stage} = stageRes as any

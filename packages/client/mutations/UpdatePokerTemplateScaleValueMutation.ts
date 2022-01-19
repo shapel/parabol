@@ -36,31 +36,28 @@ const mutation = graphql`
   }
 `
 
-const UpdatePokerTemplateScaleValueMutation: StandardMutation<TUpdatePokerTemplateScaleValueMutation> = (
-  atmosphere,
-  variables,
-  {onError, onCompleted}
-) => {
-  return commitMutation<TUpdatePokerTemplateScaleValueMutation>(atmosphere, {
-    mutation,
-    variables,
-    onCompleted,
-    onError,
-    optimisticUpdater: (store) => {
-      const {scaleId, oldScaleValue, newScaleValue} = variables
-      const scale = store.get(scaleId)
-      if (!scale) return
-      const oldScaleValueId = `${scaleId}:${oldScaleValue.label}`
-      const sortOrder = store.get(oldScaleValueId)?.getValue('sortOrder')
-      safeRemoveNodeFromArray(oldScaleValueId, scale, 'values')
+const UpdatePokerTemplateScaleValueMutation: StandardMutation<TUpdatePokerTemplateScaleValueMutation> =
+  (atmosphere, variables, {onError, onCompleted}) => {
+    return commitMutation<TUpdatePokerTemplateScaleValueMutation>(atmosphere, {
+      mutation,
+      variables,
+      onCompleted,
+      onError,
+      optimisticUpdater: (store) => {
+        const {scaleId, oldScaleValue, newScaleValue} = variables
+        const scale = store.get(scaleId)
+        if (!scale) return
+        const oldScaleValueId = `${scaleId}:${oldScaleValue.label}`
+        const sortOrder = store.get(oldScaleValueId)?.getValue('sortOrder')
+        safeRemoveNodeFromArray(oldScaleValueId, scale, 'values')
 
-      const proxyScaleValue = createProxyRecord(store, 'TemplateScaleValue', {
-        ...newScaleValue,
-        sortOrder: sortOrder
-      })
-      addNodeToArray(proxyScaleValue, scale, 'values', 'sortOrder')
-    }
-  })
-}
+        const proxyScaleValue = createProxyRecord(store, 'TemplateScaleValue', {
+          ...newScaleValue,
+          sortOrder: sortOrder
+        })
+        addNodeToArray(proxyScaleValue, scale, 'values', 'sortOrder')
+      }
+    })
+  }
 
 export default UpdatePokerTemplateScaleValueMutation

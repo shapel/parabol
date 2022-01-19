@@ -20,15 +20,8 @@ const EditableOrgText = styled(EditableText)({
 
 class EditableOrgName extends Component<Props> {
   handleSubmit = (rawName) => {
-    const {
-      atmosphere,
-      onError,
-      onCompleted,
-      setDirty,
-      submitMutation,
-      submitting,
-      organization
-    } = this.props
+    const {atmosphere, onError, onCompleted, setDirty, submitMutation, submitting, organization} =
+      this.props
     if (submitting) return
     setDirty()
     const {error, value: name} = this.validate(rawName)

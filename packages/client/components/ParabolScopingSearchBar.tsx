@@ -12,7 +12,7 @@ import {ICON_SIZE} from '../styles/typographyV2'
 const SearchIcon = styled(Icon)({
   color: PALETTE.SLATE_600,
   fontSize: ICON_SIZE.MD24,
-  marginRight: 12,
+  marginRight: 12
 })
 
 const SearchBar = styled('div')({

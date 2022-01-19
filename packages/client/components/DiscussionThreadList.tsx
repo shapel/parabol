@@ -61,15 +61,8 @@ interface Props {
 }
 
 const DiscussionThreadList = forwardRef((props: Props, ref: any) => {
-  const {
-    allowedThreadables,
-    editorRef,
-    discussion,
-    threadables,
-    dataCy,
-    preferredNames,
-    viewer
-  } = props
+  const {allowedThreadables, editorRef, discussion, threadables, dataCy, preferredNames, viewer} =
+    props
   const isEmpty = threadables.length === 0
   useScrollThreadList(threadables, editorRef, ref, preferredNames)
   const allowTasks = allowedThreadables.includes('task')

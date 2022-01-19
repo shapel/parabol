@@ -18,12 +18,13 @@ interface Props {
 const DisplayRow = styled('div')({
   display: 'flex',
   justifyContent: 'center',
-  [`@media screen and (min-height: 800px) and (min-width: ${Breakpoint.SINGLE_REFLECTION_COLUMN}px)`]: {
-    // for larger viewports: dont' want stuff to move when it turns on
-    // adding a min-height, we lose too much vertical real estate when the timer is not used
-    // todo: float over top bar when there’s room @ laptop+ breakpoint
-    minHeight: 44
-  }
+  [`@media screen and (min-height: 800px) and (min-width: ${Breakpoint.SINGLE_REFLECTION_COLUMN}px)`]:
+    {
+      // for larger viewports: dont' want stuff to move when it turns on
+      // adding a min-height, we lose too much vertical real estate when the timer is not used
+      // todo: float over top bar when there’s room @ laptop+ breakpoint
+      minHeight: 44
+    }
 })
 
 const PhaseCompleteWrapper = styled('div')({
@@ -41,18 +42,19 @@ const StageTimerDisplay = (props: Props) => {
   const {viewerId} = atmosphere
   // scoping this to the group phase for a real retro
   const isDemo = isDemoRoute()
-  const canUndoGroupPhase = !isDemo && canUndo && viewerId === facilitatorUserId && phaseType === 'group'
+  const canUndoGroupPhase =
+    !isDemo && canUndo && viewerId === facilitatorUserId && phaseType === 'group'
   return (
     <DisplayRow>
       {localScheduledEndTime && !isComplete ? (
         <StageTimerDisplayGauge endTime={localScheduledEndTime} />
       ) : null}
-      {isPhaseComplete
-        ? <PhaseCompleteWrapper>
+      {isPhaseComplete ? (
+        <PhaseCompleteWrapper>
           <PhaseCompleteTag isComplete={isPhaseComplete} />
           {canUndoGroupPhase ? <UndoableGroupPhaseControl meetingId={meeting.id} /> : null}
         </PhaseCompleteWrapper>
-        : null}
+      ) : null}
     </DisplayRow>
   )
 }

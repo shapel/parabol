@@ -57,8 +57,11 @@ const RetroMeetingSidebar = (props: Props) => {
       <MeetingNavList>
         {phaseTypes.map((phaseType) => {
           const itemStage = getSidebarItemStage(phaseType, phases, facilitatorStageId)
-          const {id: itemStageId = '', isNavigable = false, isNavigableByFacilitator = false} =
-            itemStage || {}
+          const {
+            id: itemStageId = '',
+            isNavigable = false,
+            isNavigableByFacilitator = false
+          } = itemStage || {}
           const canNavigate = isViewerFacilitator ? isNavigableByFacilitator : isNavigable
           const handleClick = () => {
             gotoStageId(itemStageId).catch()

@@ -18,9 +18,7 @@ class GoogleClientManager extends GoogleManager {
     loginHint?: string
   ) {
     const {submitting, onError, onCompleted, submitMutation} = mutationProps
-    const providerState = Math.random()
-      .toString(36)
-      .substring(5)
+    const providerState = Math.random().toString(36).substring(5)
     const params = new URLSearchParams({
       client_id: window.__ACTION__.google,
       scope: GoogleClientManager.SCOPE,

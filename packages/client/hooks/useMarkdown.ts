@@ -37,10 +37,7 @@ const extractStyle = (
   extractedStyles: typeof styles
 ) => {
   const {regex, matchIdx} = inlineMatchers[style]
-  const blockText = editorState
-    .getCurrentContent()
-    .getBlockForKey(blockKey)
-    .getText()
+  const blockText = editorState.getCurrentContent().getBlockForKey(blockKey).getText()
   const result = regex.exec(blockText)
   if (result) {
     const es = extractedStyles.length === 0 ? getNextState() : editorState

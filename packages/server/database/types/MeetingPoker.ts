@@ -22,16 +22,8 @@ export default class MeetingPoker extends Meeting {
   storyCount?: number
   commentCount?: number
   constructor(input: Input) {
-    const {
-      id,
-      teamId,
-      meetingCount,
-      name,
-      phases,
-      facilitatorUserId,
-      templateId,
-      templateRefId
-    } = input
+    const {id, teamId, meetingCount, name, phases, facilitatorUserId, templateId, templateRefId} =
+      input
     super({
       id,
       teamId,

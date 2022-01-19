@@ -53,11 +53,7 @@ const archiveTimelineEvent = {
         .get('timelineEventsByMeetingId')
         .load(meetingId)
       const eventIds = meetingTimelineEvents.map(({id}) => id)
-      await r
-        .table('TimelineEvent')
-        .getAll(r.args(eventIds))
-        .update({isActive: false})
-        .run()
+      await r.table('TimelineEvent').getAll(r.args(eventIds)).update({isActive: false}).run()
       meetingTimelineEvents.map((event) => {
         const {id: timelineEventId, userId} = event
         publish(

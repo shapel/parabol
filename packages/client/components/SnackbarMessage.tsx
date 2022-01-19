@@ -38,8 +38,9 @@ const MessageStyles = styled('div')<{status: TransitionStatus}>(({status}) => ({
   padding: 8,
   transition: `all 300ms ${DECELERATE}`,
   opacity: status === TransitionStatus.MOUNTED || status === TransitionStatus.EXITING ? 0 : 1,
-  transform: `translateY(${status === TransitionStatus.MOUNTED ? 20 : status === TransitionStatus.EXITING ? -20 : 0
-    }px)`,
+  transform: `translateY(${
+    status === TransitionStatus.MOUNTED ? 20 : status === TransitionStatus.EXITING ? -20 : 0
+  }px)`,
   pointerEvents: 'auto',
   userSelect: 'none',
   zIndex: ZIndex.SNACKBAR

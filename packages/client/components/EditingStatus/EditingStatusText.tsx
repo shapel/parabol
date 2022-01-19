@@ -13,9 +13,10 @@ interface Props {
 }
 
 const useTimeFrom = (timestamp: string) => {
-  const makeTimeFrom = useCallback(() => relativeDate(timestamp, {smallDiff: 'just now'}), [
-    timestamp
-  ])
+  const makeTimeFrom = useCallback(
+    () => relativeDate(timestamp, {smallDiff: 'just now'}),
+    [timestamp]
+  )
   const [timeFrom, setTimeFrom] = useState(makeTimeFrom)
   const timeoutRef = useRef<number | undefined>()
   useEffect(() => {

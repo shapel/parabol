@@ -79,10 +79,7 @@ export default {
     )
 
     await r({
-      update: r
-        .table('Invoice')
-        .get(invoiceId)
-        .update({status: 'FAILED'}),
+      update: r.table('Invoice').get(invoiceId).update({status: 'FAILED'}),
       insert: r.table('Notification').insert(notifications)
     }).run()
 

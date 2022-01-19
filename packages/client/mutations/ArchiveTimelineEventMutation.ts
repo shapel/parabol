@@ -28,15 +28,13 @@ const mutation = graphql`
   }
 `
 
-export const archiveTimelineEventNotificationUpdater: SharedUpdater<ArchiveTimelineEventMutation_notification> = (
-  payload,
-  {store}
-) => {
-  const timelineEvent = payload.getLinkedRecord('timelineEvent')
-  if (!timelineEvent) return
-  const timelineEventId = timelineEvent.getValue('id')
-  handleRemoveTimelineEvent(timelineEventId, store)
-}
+export const archiveTimelineEventNotificationUpdater: SharedUpdater<ArchiveTimelineEventMutation_notification> =
+  (payload, {store}) => {
+    const timelineEvent = payload.getLinkedRecord('timelineEvent')
+    if (!timelineEvent) return
+    const timelineEventId = timelineEvent.getValue('id')
+    handleRemoveTimelineEvent(timelineEventId, store)
+  }
 
 const handleRemoveTimelineEvent = (timelineEventId, store) => {
   const viewer = store.getRoot().getLinkedRecord('viewer')

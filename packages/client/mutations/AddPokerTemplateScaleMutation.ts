@@ -30,22 +30,22 @@ const mutation = graphql`
   }
 `
 
-export const addPokerTemplateScaleTeamUpdater: SharedUpdater<AddPokerTemplateScaleMutation_scale> = (
-  payload,
-  {store}
-) => {
-  const scale = payload.getLinkedRecord('scale')
-  if (!scale) return
-  const scaleId = scale.getValue('id')
-  handleAddPokerTemplateScale(scale, store)
-  const teamId = scale.getValue('teamId')
-  const team = store.get(teamId)!
-  team.setValue(scaleId, 'editingScaleId')
-}
+export const addPokerTemplateScaleTeamUpdater: SharedUpdater<AddPokerTemplateScaleMutation_scale> =
+  (payload, {store}) => {
+    const scale = payload.getLinkedRecord('scale')
+    if (!scale) return
+    const scaleId = scale.getValue('id')
+    handleAddPokerTemplateScale(scale, store)
+    const teamId = scale.getValue('teamId')
+    const team = store.get(teamId)!
+    team.setValue(scaleId, 'editingScaleId')
+  }
 
-const AddPokerTemplateScaleMutation: StandardMutation<
-  TAddPokerTemplateScaleMutation
-> = (atmosphere, variables, {onError, onCompleted}) => {
+const AddPokerTemplateScaleMutation: StandardMutation<TAddPokerTemplateScaleMutation> = (
+  atmosphere,
+  variables,
+  {onError, onCompleted}
+) => {
   return commitMutation<TAddPokerTemplateScaleMutation>(atmosphere, {
     mutation,
     variables,
@@ -72,11 +72,11 @@ const AddPokerTemplateScaleMutation: StandardMutation<
       } else {
         const questionMarkCard = createProxyRecord(store, 'TemplateScaleValue', {
           color: PALETTE.FUSCIA_400,
-          label: PokerCards.QUESTION_CARD,
+          label: PokerCards.QUESTION_CARD
         })
         const passCard = createProxyRecord(store, 'TemplateScaleValue', {
           color: PALETTE.GRAPE_500,
-          label: PokerCards.PASS_CARD,
+          label: PokerCards.PASS_CARD
         })
         proxyScale.setLinkedRecords([questionMarkCard, passCard], 'values')
       }

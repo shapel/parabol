@@ -18,11 +18,7 @@ export async function up(): Promise<void> {
   const ghIntegrations = await r
     .table('Provider')
     .filter({service: 'GitHubIntegration', isActive: true})
-    .filter((row) =>
-      row('accessToken')
-        .default(null)
-        .ne(null)
-    )
+    .filter((row) => row('accessToken').default(null).ne(null))
     .run()
   const auths = ghIntegrations.map(
     ({accessToken, createdAt, isActive, providerUserName, teamId, updatedAt, userId}) => ({

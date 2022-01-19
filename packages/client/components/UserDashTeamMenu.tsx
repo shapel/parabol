@@ -30,12 +30,13 @@ const UserDashTeamMenu = (props: Props) => {
   const {teamIds, userIds, showArchived} = useUserTaskFilters(atmosphere.viewerId)
   const showAllTeams = !!userIds
   const {filteredTeams, defaultActiveIdx} = useMemo(() => {
-    const filteredTeams = userIds ? teams.filter(({teamMembers}) =>
-      !!teamMembers.find(({userId}) => userIds.includes(userId))
-    ) : teams
+    const filteredTeams = userIds
+      ? teams.filter(({teamMembers}) => !!teamMembers.find(({userId}) => userIds.includes(userId)))
+      : teams
     return {
       filteredTeams,
-      defaultActiveIdx: filteredTeams.findIndex((team) => teamIds?.includes(team.id)) + (showAllTeams ? 2 : 1)
+      defaultActiveIdx:
+        filteredTeams.findIndex((team) => teamIds?.includes(team.id)) + (showAllTeams ? 2 : 1)
     }
   }, [userIds, teamIds])
   return (
@@ -45,18 +46,23 @@ const UserDashTeamMenu = (props: Props) => {
       defaultActiveIdx={defaultActiveIdx}
     >
       <DropdownMenuLabel>{'Filter by team:'}</DropdownMenuLabel>
-      {showAllTeams &&
+      {showAllTeams && (
         <MenuItem
           key={'teamFilterNULL'}
           label={UserTaskViewFilterLabels.ALL_TEAMS}
-          onClick={() => history.push(constructUserTaskFilterQueryParamURL(null, userIds, showArchived))}
-        />}
+          onClick={() =>
+            history.push(constructUserTaskFilterQueryParamURL(null, userIds, showArchived))
+          }
+        />
+      )}
       {filteredTeams.map((team) => (
         <MenuItem
           key={`teamFilter${team.id}`}
           dataCy={`team-filter-${team.id}`}
           label={team.name}
-          onClick={() => history.push(constructUserTaskFilterQueryParamURL([team.id], userIds, showArchived))}
+          onClick={() =>
+            history.push(constructUserTaskFilterQueryParamURL([team.id], userIds, showArchived))
+          }
         />
       ))}
     </Menu>

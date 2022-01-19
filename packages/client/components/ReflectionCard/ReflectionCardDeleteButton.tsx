@@ -53,15 +53,8 @@ const StyledIcon = styled(Icon)({
 
 class ReflectionCardDeleteButton extends Component<Props> {
   handleDelete = () => {
-    const {
-      atmosphere,
-      onCompleted,
-      onError,
-      meetingId,
-      reflectionId,
-      submitMutation,
-      submitting
-    } = this.props
+    const {atmosphere, onCompleted, onError, meetingId, reflectionId, submitMutation, submitting} =
+      this.props
     if (submitting) return
     submitMutation()
     RemoveReflectionMutation(atmosphere, {reflectionId}, {meetingId, onError, onCompleted})

@@ -37,10 +37,7 @@ export default {
 
     // AUTH
     const viewerId = getUserId(authToken)
-    const reflectionGroup = await r
-      .table('RetroReflectionGroup')
-      .get(reflectionGroupId)
-      .run()
+    const reflectionGroup = await r.table('RetroReflectionGroup').get(reflectionGroupId).run()
     if (!reflectionGroup || !reflectionGroup.isActive) {
       return standardError(new Error('Reflection group not found'), {
         userId: viewerId,
@@ -48,10 +45,7 @@ export default {
       })
     }
     const {meetingId} = reflectionGroup
-    const meeting = (await r
-      .table('NewMeeting')
-      .get(meetingId)
-      .run()) as MeetingRetrospective
+    const meeting = (await r.table('NewMeeting').get(meetingId).run()) as MeetingRetrospective
     const {endedAt, phases, maxVotesPerGroup, teamId} = meeting
     if (!isTeamMember(authToken, teamId)) {
       return standardError(new Error('Team not found'), {userId: viewerId})

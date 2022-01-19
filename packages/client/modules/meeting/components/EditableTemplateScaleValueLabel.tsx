@@ -56,10 +56,10 @@ const EditableTemplateScaleValueLabel = (props: Props) => {
       .test((mVal) => {
         const isDupe = mVal
           ? scale.values.find(
-            (aScaleValue) =>
-              aScaleValue.id !== scaleValueId &&
-              aScaleValue.label.toLowerCase() === mVal.toLowerCase()
-          )
+              (aScaleValue) =>
+                aScaleValue.id !== scaleValueId &&
+                aScaleValue.label.toLowerCase() === mVal.toLowerCase()
+            )
           : undefined
         return isDupe ? 'That value already exists' : undefined
       })

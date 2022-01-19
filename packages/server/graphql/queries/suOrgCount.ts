@@ -31,14 +31,16 @@ export default {
     requireSU(authToken)
 
     // RESOLUTION
-    return (r
-      .table('OrganizationUser')
-      .getAll(
-        ([tier, false] as unknown) as string, // super hacky type fix bc no fn overload is defined in the type file for this valid invocation
-        ({index: 'tierInactive'} as unknown) as undefined
-      )
-      .filter({removedAt: null})
-      .group('orgId') as any)
+    return (
+      r
+        .table('OrganizationUser')
+        .getAll(
+          [tier, false] as unknown as string, // super hacky type fix bc no fn overload is defined in the type file for this valid invocation
+          {index: 'tierInactive'} as unknown as undefined
+        )
+        .filter({removedAt: null})
+        .group('orgId') as any
+    )
       .count()
       .ungroup()
       .filter((group) => group('reduction').ge(minOrgSize))

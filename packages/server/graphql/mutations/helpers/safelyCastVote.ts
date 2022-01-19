@@ -38,9 +38,7 @@ const safelyCastVote = async (
     .get(reflectionGroupId)
     .update((group) => {
       return r.branch(
-        group('voterIds')
-          .count(userId)
-          .lt(maxVotesPerGroup),
+        group('voterIds').count(userId).lt(maxVotesPerGroup),
         {
           updatedAt: now,
           voterIds: group('voterIds').append(userId)

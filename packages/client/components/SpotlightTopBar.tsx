@@ -1,4 +1,3 @@
-
 import styled from '@emotion/styled'
 import {PALETTE} from '../styles/paletteV3'
 import PlainButton from './PlainButton/PlainButton'

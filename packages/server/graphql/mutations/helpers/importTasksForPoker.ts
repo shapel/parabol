@@ -46,10 +46,7 @@ const importTasksForPoker = async (
     .filter(isNotNull)
 
   if (newIntegrationUpdates.length > 0) {
-    await r
-      .table('Task')
-      .insert(tasksToAdd)
-      .run()
+    await r.table('Task').insert(tasksToAdd).run()
   }
   const integratedTasks = [...existingTasks, ...tasksToAdd]
 

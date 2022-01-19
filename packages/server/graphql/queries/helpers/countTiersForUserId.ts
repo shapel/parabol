@@ -11,10 +11,7 @@ const countTiersForUserId = async (userId) => {
     .getAll(userId, {index: 'userId'})
     .filter({inactive: false, removedAt: null})
     .merge((organizationUser) => ({
-      tier: r
-        .table('Organization')
-        .get(organizationUser('orgId'))('tier')
-        .default('personal')
+      tier: r.table('Organization').get(organizationUser('orgId'))('tier').default('personal')
     }))
     .run()) as OrganizationUser[]
   const tierPersonalCount = organizationUsers.filter(

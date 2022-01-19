@@ -129,17 +129,15 @@ const handleUpdateTemplateScope = (
   })
 }
 
-export const updateTemplateScopeOrganizationUpdater: SharedUpdater<UpdateReflectTemplateScopeMutation_organization> = (
-  payload: any,
-  {store}
-) => {
-  const template = payload.getLinkedRecord('template')
-  if (!template) return
-  const clonedTemplate = payload.getLinkedRecord('clonedTemplate')
-  const nextTemplate = clonedTemplate || template
-  const newScope = nextTemplate.getValue('scope')
-  handleUpdateTemplateScope(template, newScope, store, clonedTemplate)
-}
+export const updateTemplateScopeOrganizationUpdater: SharedUpdater<UpdateReflectTemplateScopeMutation_organization> =
+  (payload: any, {store}) => {
+    const template = payload.getLinkedRecord('template')
+    if (!template) return
+    const clonedTemplate = payload.getLinkedRecord('clonedTemplate')
+    const nextTemplate = clonedTemplate || template
+    const newScope = nextTemplate.getValue('scope')
+    handleUpdateTemplateScope(template, newScope, store, clonedTemplate)
+  }
 
 const UpdateReflectTemplateScopeMutation: StandardMutation<TUpdateTemplateScopeMutation> = (
   atmosphere,

@@ -31,7 +31,7 @@ const NoNotifications = styled('div')({
   width: '100%'
 })
 
-const defaultViewer = ({notifications: {edges: []}} as unknown) as NotificationDropdown_viewer
+const defaultViewer = {notifications: {edges: []}} as unknown as NotificationDropdown_viewer
 
 const NotificationDropdown = (props: Props) => {
   const {viewer, menuProps, parentRef, relay} = props

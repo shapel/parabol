@@ -16,10 +16,11 @@ const FilterIcon = styled(Icon)({
   fontSize: ICON_SIZE.MD24
 })
 
-const JiraScopingSearchFilterMenuRoot = lazyPreload(() =>
-  import(
-    /* webpackChunkName: 'JiraScopingSearchFilterMenuRoot' */ './JiraScopingSearchFilterMenuRoot'
-  )
+const JiraScopingSearchFilterMenuRoot = lazyPreload(
+  () =>
+    import(
+      /* webpackChunkName: 'JiraScopingSearchFilterMenuRoot' */ './JiraScopingSearchFilterMenuRoot'
+    )
 )
 interface Props {
   meeting: JiraScopingSearchFilterToggle_meeting
@@ -28,13 +29,10 @@ interface Props {
 const JiraScopingSearchFilterToggle = (props: Props) => {
   const {meeting} = props
   const {id: meetingId, teamId} = meeting
-  const {togglePortal, originRef, menuPortal, menuProps} = useMenu(
-    MenuPosition.UPPER_RIGHT,
-    {
-      loadingWidth: 200,
-      noClose: true
-    }
-  )
+  const {togglePortal, originRef, menuPortal, menuProps} = useMenu(MenuPosition.UPPER_RIGHT, {
+    loadingWidth: 200,
+    noClose: true
+  })
   return (
     <>
       <PlainButton onClick={togglePortal} ref={originRef}>

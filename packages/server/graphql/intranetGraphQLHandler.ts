@@ -28,7 +28,7 @@ const intranetHttpGraphQLHandler = uWSAsyncHandler(async (res: HttpResponse, req
     res.writeStatus('422').end()
     return
   }
-  const {query, variables, isPrivate} = (body as any) as IntranetPayload
+  const {query, variables, isPrivate} = body as any as IntranetPayload
   try {
     const result = await getGraphQLExecutor().publish({
       authToken,

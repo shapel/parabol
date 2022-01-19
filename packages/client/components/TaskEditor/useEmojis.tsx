@@ -37,13 +37,12 @@ const useEmojis = (
     }
     return null
   }
-  const menuItemClickFactory = (emoji: string, editorState: EditorState) => (
-    e: React.MouseEvent
-  ) => {
-    e.preventDefault()
-    const nextEditorState = autoCompleteEmoji(editorState, emoji)
-    setEditorState(nextEditorState)
-  }
+  const menuItemClickFactory =
+    (emoji: string, editorState: EditorState) => (e: React.MouseEvent) => {
+      e.preventDefault()
+      const nextEditorState = autoCompleteEmoji(editorState, emoji)
+      setEditorState(nextEditorState)
+    }
 
   const onRemoveModal = () => {
     setIsOpen(false)

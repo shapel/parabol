@@ -8,12 +8,13 @@ import {EditorProps, EditorState} from 'draft-js'
 import {SetEditorState} from '../../types/draft'
 import useForceUpdate from '../../hooks/useForceUpdate'
 
-const EditorSuggestions = lazy(() =>
-  import(/* webpackChunkName: 'EditorSuggestions' */ '../EditorSuggestions/EditorSuggestions')
+const EditorSuggestions = lazy(
+  () => import(/* webpackChunkName: 'EditorSuggestions' */ '../EditorSuggestions/EditorSuggestions')
 )
 
-const SuggestMentionableUsersRoot = lazy(() =>
-  import(/* webpackChunkName: 'SuggestMentionableUsersRoot' */ '../SuggestMentionableUsersRoot')
+const SuggestMentionableUsersRoot = lazy(
+  () =>
+    import(/* webpackChunkName: 'SuggestMentionableUsersRoot' */ '../SuggestMentionableUsersRoot')
 )
 
 type Handlers = Pick<EditorProps, 'handleReturn' | 'onChange' | 'keyBindingFn'>

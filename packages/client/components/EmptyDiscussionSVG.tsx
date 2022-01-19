@@ -2,7 +2,7 @@ import React from 'react'
 
 const EmptyDiscussionSVG = React.memo(() => {
   return (
-<svg viewBox='0 0 270 141' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg viewBox='0 0 270 141' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M266.278 126.641H12.998C12.998 56.698 69.696 0 139.637 0c69.942 0 126.641 56.698 126.641 126.641z'
         fill='#F1F1F8'

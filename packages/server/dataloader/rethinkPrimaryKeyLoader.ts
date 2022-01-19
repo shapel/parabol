@@ -9,10 +9,7 @@ const rethinkPrimaryKeyLoader = <T extends keyof DBType>(
   // don't pass in a a filter here because they requested a specific ID, they know what they want
   const batchFn = async (keys) => {
     const r = await getRethink()
-    const docs = (await r
-      .table(table)
-      .getAll(r.args(keys), {index: 'id'})
-      .run()) as any
+    const docs = (await r.table(table).getAll(r.args(keys), {index: 'id'}).run()) as any
     return normalizeRethinkDbResults<DBType[T]>(keys, docs)
   }
   return new DataLoader<string, DBType[T]>(batchFn, options)

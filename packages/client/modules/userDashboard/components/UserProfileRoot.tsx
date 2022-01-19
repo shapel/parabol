@@ -2,7 +2,9 @@ import graphql from 'babel-plugin-relay/macro'
 import React from 'react'
 import {QueryRenderer} from 'react-relay'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
-import withAtmosphere, {WithAtmosphereProps} from '../../../decorators/withAtmosphere/withAtmosphere'
+import withAtmosphere, {
+  WithAtmosphereProps
+} from '../../../decorators/withAtmosphere/withAtmosphere'
 import useSubscription from '../../../hooks/useSubscription'
 import NotificationSubscription from '../../../subscriptions/NotificationSubscription'
 import {LoaderSize} from '../../../types/constEnums'

@@ -26,10 +26,10 @@ const TaskFooterUserAssigneeMenu = (props: Props) => {
   const {team} = viewer
   const atmosphere = useAtmosphere()
   const teamMembers = team?.teamMembers || []
-  const taskUserIdx = useMemo(() => teamMembers.findIndex(({userId}) => userId) + 1, [
-    userId,
-    teamMembers
-  ])
+  const taskUserIdx = useMemo(
+    () => teamMembers.findIndex(({userId}) => userId) + 1,
+    [userId, teamMembers]
+  )
   const assignees = useMemo(
     () => teamMembers.filter((teamMember) => teamMember.userId !== userId),
     [userId, teamMembers]

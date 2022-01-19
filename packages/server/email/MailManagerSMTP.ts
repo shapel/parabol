@@ -3,7 +3,7 @@ import sendToSentry from '../utils/sendToSentry'
 import MailManager, {MailManagerOptions} from './MailManager'
 
 export default class MailManagerSMTP extends MailManager {
-  transport = new nodemailer.createTransport({
+  transport = nodemailer.createTransport({
     host: process.env.MAIL_SMTP_HOST,
     port: process.env.MAIL_SMTP_PORT,
     auth: process.env.MAIL_SMTP_USER
@@ -23,7 +23,7 @@ export default class MailManagerSMTP extends MailManager {
             ciphers: process.env.MAIL_SMTP_CIPHERS
           }
         : undefined
-  })
+  } as any)
 
   async sendEmail(options: MailManagerOptions) {
     const {subject, body, to, attachments, html} = options

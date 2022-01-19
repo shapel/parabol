@@ -30,10 +30,7 @@ const setCheckInEnabled = {
 
     // AUTH
     const viewerId = getUserId(authToken)
-    const settings = await r
-      .table('MeetingSettings')
-      .get(settingsId)
-      .run()
+    const settings = await r.table('MeetingSettings').get(settingsId).run()
     if (!settings) {
       return standardError(new Error('Settings not found'), {userId: viewerId})
     }

@@ -45,9 +45,12 @@ interface Props {
 
 const SendCommentButton = (props: Props) => {
   const {commentSubmitState, onSubmit, dataCy} = props
-  const {tooltipPortal, openTooltip, closeTooltip, originRef: tipRef} = useTooltip<
-    HTMLButtonElement
-  >(MenuPosition.LOWER_CENTER)
+  const {
+    tooltipPortal,
+    openTooltip,
+    closeTooltip,
+    originRef: tipRef
+  } = useTooltip<HTMLButtonElement>(MenuPosition.LOWER_CENTER)
   const isDisabled = commentSubmitState === 'idle'
   return (
     <>

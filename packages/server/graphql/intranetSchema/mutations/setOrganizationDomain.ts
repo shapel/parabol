@@ -24,10 +24,7 @@ const setOrganizationDomain = {
     requireSU(authToken)
 
     // VALIDATION
-    const organization = await r
-      .table('Organization')
-      .get(orgId)
-      .run()
+    const organization = await r.table('Organization').get(orgId).run()
 
     if (!organization) {
       throw new Error('Organization not found')

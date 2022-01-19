@@ -243,13 +243,18 @@ class ClientGraphQLServer extends (EventEmitter as GQLDemoEmitter) {
         }
       }
     },
-    TaskFooterIntegrateMenuRootQuery: () => {
+    TaskFooterIntegrateMenuRootQuery: (_teamId: unknown, userId: string) => {
+      const user = this.db.users[0]
       return {
         viewer: {
-          ...this.db.users[0],
+          ...user,
           userOnTeam: {
-            ...this.db.users[0]
-          }
+            ...user
+          },
+          assigneeTeamMember: this.db.teamMembers.find(
+            (teamMember) => teamMember.userId === userId
+          ),
+          viewerTeamMember: this.db.teamMembers[0]
         }
       }
     },
@@ -469,9 +474,9 @@ class ClientGraphQLServer extends (EventEmitter as GQLDemoEmitter) {
       userId: string
     ) => {
       const now = new Date().toJSON()
-      const reflectPhase = ((this.db.newMeeting as any).phases.find(
+      const reflectPhase = (this.db.newMeeting as any).phases.find(
         (phase) => phase.phaseType === 'reflect'
-      ) as unknown) as IReflectPhase
+      ) as unknown as IReflectPhase
       const prompt = reflectPhase.reflectPrompts.find((prompt) => prompt.id === promptId)
       const reflectionGroupId = groupId || this.getTempId('refGroup')
       const reflectionId = id || this.getTempId('ref')
@@ -802,9 +807,9 @@ class ClientGraphQLServer extends (EventEmitter as GQLDemoEmitter) {
       return {renameMeeting: data}
     },
     SetPhaseFocusMutation: ({focusedPromptId}, userId) => {
-      const reflectPhase = (this.db.newMeeting.phases!.find(
+      const reflectPhase = this.db.newMeeting.phases!.find(
         (phase) => phase.phaseType === REFLECT
-      ) as unknown) as IReflectPhase
+      ) as unknown as IReflectPhase
       reflectPhase.focusedPromptId = focusedPromptId || null
       const data = {
         meetingId: RetroDemo.MEETING_ID,
@@ -1368,9 +1373,9 @@ class ClientGraphQLServer extends (EventEmitter as GQLDemoEmitter) {
       return {updateTaskDueDate: data}
     },
     DragDiscussionTopicMutation: ({stageId, sortOrder}, userId) => {
-      const discussPhase = (this.db.newMeeting.phases!.find(
+      const discussPhase = this.db.newMeeting.phases!.find(
         (phase) => phase.phaseType === DISCUSS
-      ) as unknown) as IDiscussPhase
+      ) as unknown as IDiscussPhase
       const {stages} = discussPhase
       const draggedStage = stages.find((stage) => stage.id === stageId)!
       draggedStage.sortOrder = sortOrder
@@ -1389,7 +1394,7 @@ class ClientGraphQLServer extends (EventEmitter as GQLDemoEmitter) {
       return {dragDiscussionTopic: data}
     },
     EndRetrospectiveMutation: ({meetingId}, userId) => {
-      const phases = (this.db.newMeeting.phases as unknown) as INewMeetingPhase[]
+      const phases = this.db.newMeeting.phases as unknown as INewMeetingPhase[]
       const lastPhase = phases[phases.length - 1] as IDiscussPhase
       const currentStage = lastPhase.stages.find(
         (stage) => stage.startAt && !stage.endAt

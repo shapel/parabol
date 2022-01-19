@@ -75,7 +75,7 @@ const PokerTemplateList = (props: Props) => {
   const {activeIdx, setActiveIdx, settings} = props
   const {team, teamTemplates} = settings
   const {id: teamId} = team
-  const activeTemplateId = settings.activeTemplate?.id ?? "-tmp"
+  const activeTemplateId = settings.activeTemplate?.id ?? '-tmp'
 
   const gotoTeamTemplates = () => {
     setActiveIdx(0)
@@ -118,7 +118,11 @@ const PokerTemplateList = (props: Props) => {
           onClick={gotoPublicTemplates}
         />
       </StyledTabsBar>
-      <AddNewPokerTemplate teamId={teamId} pokerTemplates={teamTemplates} gotoTeamTemplates={gotoTeamTemplates} />
+      <AddNewPokerTemplate
+        teamId={teamId}
+        pokerTemplates={teamTemplates}
+        gotoTeamTemplates={gotoTeamTemplates}
+      />
       <SwipeableViews
         enableMouseEvents
         index={activeIdx}

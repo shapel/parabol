@@ -35,29 +35,23 @@ interface EntityPasteOffset {
 }
 
 const EditorInputWrapper = (props: Props) => {
-  const {
-    ariaLabel,
-    setEditorState,
-    editorState,
-    editorRef,
-    handleReturn,
-    placeholder,
-    readOnly
-  } = props
+  const {ariaLabel, setEditorState, editorState, editorRef, handleReturn, placeholder, readOnly} =
+    props
   const entityPasteStartRef = useRef<EntityPasteOffset | undefined>(undefined)
   const ks = useKeyboardShortcuts(editorState, setEditorState, {
     handleKeyCommand: props.handleKeyCommand,
     keyBindingFn: props.keyBindingFn
   })
-  const {handleBeforeInput, handleKeyCommand, keyBindingFn, onChange: handleChange} = useMarkdown(
-    editorState,
-    setEditorState,
-    {
-      handleKeyCommand: ks.handleKeyCommand,
-      keyBindingFn: ks.keyBindingFn,
-      handleBeforeInput: props.handleBeforeInput
-    }
-  )
+  const {
+    handleBeforeInput,
+    handleKeyCommand,
+    keyBindingFn,
+    onChange: handleChange
+  } = useMarkdown(editorState, setEditorState, {
+    handleKeyCommand: ks.handleKeyCommand,
+    keyBindingFn: ks.keyBindingFn,
+    handleBeforeInput: props.handleBeforeInput
+  })
 
   const onChange = (editorState: EditorState) => {
     const {current: entityPasteStart} = entityPasteStartRef

@@ -7,7 +7,7 @@ import getTemplateRefsById from '../../postgres/queries/getTemplateRefsById'
 import insertTaskEstimate from '../../postgres/queries/insertTaskEstimate'
 import EstimatePhase from '../types/EstimatePhase'
 
-export const up = async function(r: R) {
+export const up = async function (r: R) {
   const BATCH_SIZE = 1000
   const plaintextContent = `Task imported from jira`
   const content = convertToTaskContent(plaintextContent)
@@ -131,10 +131,7 @@ export const up = async function(r: R) {
     console.log({taskCount: tasksToInsert.length, estimateCount: estimatesToInsert.length})
     try {
       if (tasksToInsert.length > 0) {
-        await r
-          .table('Task')
-          .insert(tasksToInsert)
-          .run()
+        await r.table('Task').insert(tasksToInsert).run()
       }
     } catch (e) {
       console.log('error inserting tasks', e)
@@ -148,6 +145,6 @@ export const up = async function(r: R) {
   }
 }
 
-export const down = async function() {
+export const down = async function () {
   // noop. it's just a taskId field & there's no way to discriminate between old vs new
 }

@@ -23,26 +23,24 @@ const mutation = graphql`
   }
 `
 
-const LoginWithPasswordMutation: StandardMutation<
-  TLoginWithPasswordMutation,
-  HistoryLocalHandler
-> = (atmosphere, variables, {onError, onCompleted, history}) => {
-  return commitMutation<TLoginWithPasswordMutation>(atmosphere, {
-    mutation,
-    variables,
-    onError,
-    onCompleted: (res, errors) => {
-      const {acceptTeamInvitation, loginWithPassword} = res
-      const {error: uiError} = loginWithPassword
-      onCompleted({loginWithPassword}, errors)
-      if (!uiError && !errors) {
-        handleSuccessfulLogin(loginWithPassword)
-        const authToken = acceptTeamInvitation.authToken || loginWithPassword.authToken
-        atmosphere.setAuthToken(authToken)
-        handleAuthenticationRedirect(acceptTeamInvitation, {atmosphere, history})
+const LoginWithPasswordMutation: StandardMutation<TLoginWithPasswordMutation, HistoryLocalHandler> =
+  (atmosphere, variables, {onError, onCompleted, history}) => {
+    return commitMutation<TLoginWithPasswordMutation>(atmosphere, {
+      mutation,
+      variables,
+      onError,
+      onCompleted: (res, errors) => {
+        const {acceptTeamInvitation, loginWithPassword} = res
+        const {error: uiError} = loginWithPassword
+        onCompleted({loginWithPassword}, errors)
+        if (!uiError && !errors) {
+          handleSuccessfulLogin(loginWithPassword)
+          const authToken = acceptTeamInvitation.authToken || loginWithPassword.authToken
+          atmosphere.setAuthToken(authToken)
+          handleAuthenticationRedirect(acceptTeamInvitation, {atmosphere, history})
+        }
       }
-    }
-  })
-}
+    })
+  }
 
 export default LoginWithPasswordMutation

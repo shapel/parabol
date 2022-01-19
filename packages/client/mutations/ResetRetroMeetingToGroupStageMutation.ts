@@ -61,19 +61,17 @@ export const resetRetroMeetingToGroupStageUpdater = (payload, {store}) => {
   })
 }
 
-const ResetRetroMeetingToGroupStageMutation: SimpleMutation<TResetRetroMeetingToGroupStageMutation> = (
-  atmosphere: Atmosphere,
-  variables: ResetRetroMeetingToGroupStageMutationVariables
-) => {
-  return commitMutation<TResetRetroMeetingToGroupStageMutation>(atmosphere, {
-    mutation,
-    updater: (store) => {
-      const payload = store.getRootField('resetRetroMeetingToGroupStage')
-      if (!payload) return
-      resetRetroMeetingToGroupStageUpdater(payload, {store})
-    },
-    variables
-  })
-}
+const ResetRetroMeetingToGroupStageMutation: SimpleMutation<TResetRetroMeetingToGroupStageMutation> =
+  (atmosphere: Atmosphere, variables: ResetRetroMeetingToGroupStageMutationVariables) => {
+    return commitMutation<TResetRetroMeetingToGroupStageMutation>(atmosphere, {
+      mutation,
+      updater: (store) => {
+        const payload = store.getRootField('resetRetroMeetingToGroupStage')
+        if (!payload) return
+        resetRetroMeetingToGroupStageUpdater(payload, {store})
+      },
+      variables
+    })
+  }
 
 export default ResetRetroMeetingToGroupStageMutation
