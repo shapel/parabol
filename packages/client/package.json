@@ -13,8 +13,6 @@
     "url": "https://github.com/ParabolInc/parabol/issues"
   },
   "scripts": {
-    "storybook": "start-storybook -p 6006 -c .storybook",
-    "build-storybook": "build-sFtorybook",
     "lint": "eslint --fix ./**/*.{ts,tsx}",
     "precommit": "lint-staged",
     "typecheck": "yarn tsc --noEmit -p tsconfig.json"
