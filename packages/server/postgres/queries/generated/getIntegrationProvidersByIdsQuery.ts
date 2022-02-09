@@ -21,7 +21,7 @@ export interface IGetIntegrationProvidersByIdsQueryResult {
   authStrategy: IntegrationProviderAuthStrategyEnum;
   scope: IntegrationProviderScopeEnum;
   scopeGlobal: boolean;
-  teamId: string;
+  teamId: string | null;
   isActive: boolean;
   clientId: string | null;
   clientSecret: string | null;
@@ -29,6 +29,7 @@ export interface IGetIntegrationProvidersByIdsQueryResult {
   webhookUrl: string | null;
   consumerKey: string | null;
   consumerSecret: string | null;
+  orgId: string | null;
 }
 
 /** 'GetIntegrationProvidersByIdsQuery' query type */

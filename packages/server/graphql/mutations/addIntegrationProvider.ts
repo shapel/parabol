@@ -30,13 +30,17 @@ const addIntegrationProvider = {
     context: GQLContext
   ) => {
     const {authToken, dataLoader, socketId: mutatorId} = context
-    const {teamId} = input
+    const {teamId, scope} = input
     const operationId = dataLoader.share()
     const subOptions = {mutatorId, operationId}
 
     // AUTH
     if (!isTeamMember(authToken, teamId) && !isSuperUser(authToken)) {
       return {error: {message: 'Must be on the team for which the provider is created'}}
+    }
+    const orgId = (await dataLoader.get('teams').load(teamId))?.orgId
+    if (!orgId) {
+      return {error: {message: 'Organization does not exist'}}
     }
 
     // VALIDATION
@@ -73,7 +77,8 @@ const addIntegrationProvider = {
       ...rest,
       ...oAuth1ProviderMetadataInput,
       ...oAuth2ProviderMetadataInput,
-      ...webhookProviderMetadataInput
+      ...webhookProviderMetadataInput,
+      ...(scope === 'org' ? {orgId, teamId: null} : {orgId: null, teamId})
     })
 
     //TODO: add proper subscription scope handling here, teamId only exists in provider with team scope

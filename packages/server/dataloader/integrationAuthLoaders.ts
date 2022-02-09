@@ -20,8 +20,9 @@ interface TeamMemberIntegrationAuthPrimaryKey {
 
 interface SharedIntegrationProviderKey {
   service: IntegrationProviderServiceEnum
-  /// All team ids belonging to the organization, used for scope === 'org'
-  orgTeamIds: string[]
+  /// Query with 'org' scope by orgId
+  orgIds: string[]
+  /// Query with 'team' scope by teamId
   teamIds: string[]
 }
 
@@ -46,8 +47,8 @@ export const sharedIntegrationProviders = (parent: RootDataLoader) => {
   return new DataLoader<SharedIntegrationProviderKey, TIntegrationProvider[], string>(
     async (keys) => {
       const results = await Promise.allSettled(
-        keys.map(async ({service, orgTeamIds, teamIds}) =>
-          getSharedIntegrationProviders(service, orgTeamIds, teamIds)
+        keys.map(async ({service, orgIds, teamIds}) =>
+          getSharedIntegrationProviders(service, orgIds, teamIds)
         )
       )
       const vals = results.map((result) => (result.status === 'fulfilled' ? result.value : []))

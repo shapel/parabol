@@ -30,11 +30,9 @@ const MattermostIntegration = new GraphQLObjectType<any, GQLContext>({
         const team = await dataLoader.get('teams').load(teamId)
         if (!team) return standardError(new Error('Team not found'), {userId: viewerId})
         const {orgId} = team
-        const orgTeams = await dataLoader.get('teamsByOrgIds').load(orgId)
-        const orgTeamIds = orgTeams.map(({id}) => id)
         return dataLoader
           .get('sharedIntegrationProviders')
-          .load({service: 'mattermost', orgTeamIds, teamIds: [teamId]})
+          .load({service: 'mattermost', orgIds: [orgId], teamIds: [teamId]})
       }
     }
   })

@@ -14,8 +14,10 @@ interface IUpsertIntegrationProviderInput {
   clientSecret?: string
   serverBaseUrl?: string
   webhookUrl?: string
-  teamId: string
+  teamId: string | null
+  orgId: string | null
 }
+
 const upsertIntegrationProvider = async (provider: IUpsertIntegrationProviderInput) => {
   const result = await upsertIntegrationProviderQuery.run(provider as any, getPg())
   return result[0].id
