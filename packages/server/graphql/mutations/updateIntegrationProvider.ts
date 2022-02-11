@@ -67,6 +67,7 @@ const updateIntegrationProvider = {
       ...webhookProviderMetadataInput,
       service,
       authStrategy,
+      scope,
       ...(scope === 'org' ? {orgId, teamId: null} : {orgId: null, teamId})
     })
 
